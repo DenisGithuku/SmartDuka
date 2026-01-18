@@ -5,9 +5,7 @@ plugins {
 
 android {
     namespace = "com.githukudenis.smartduka"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk { version = release(36) }
 
     defaultConfig {
         applicationId = "com.githukudenis.smartduka"
@@ -22,19 +20,14 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    buildFeatures {
-        compose = true
-    }
+    buildFeatures { compose = true }
 }
 
 dependencies {
