@@ -39,7 +39,6 @@ _Coming soon._
     
 
 
-
 ## **Modules**
 
 - **app:** Main app module and navigation
@@ -50,8 +49,8 @@ _Coming soon._
 - **reports:** Generate reports and analytics
 - **notifications:** Background workers for low-stock reminders and sync
     
-
-
+## **Module Dependency Graph **
+![](https://github.com/user-attachments/assets/c3d556af-1be1-46d3-8358-d811168a0269)
 
 ## **Architecture**
 
