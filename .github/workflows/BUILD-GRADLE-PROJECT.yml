@@ -40,7 +40,7 @@ jobs:
 #          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.APP_KEYSTORE_PASSWORD }}
 #          RELEASE_KEYSTORE_ALIAS: ${{ secrets.APP_KEY_ALIAS }}
 #          RELEASE_KEY_PASSWORD: ${{ secrets.APP_KEY_PASSWORD }}
-        run: ./gradlew build
+#        run: ./gradlew build
 
       - name: Run tests with Gradle Wrapper
 #        env:
