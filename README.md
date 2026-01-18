@@ -3,7 +3,7 @@
 
 SmartDuka is a **portfolio project** demonstrating modern Android development practices: Jetpack Compose UI, MVVM architecture, offline-first data handling, background workers, and modular app design.
 
----
+
 
 ## **Features**
 
@@ -17,7 +17,7 @@ SmartDuka is a **portfolio project** demonstrating modern Android development pr
     - Inventory movement and stock value
 - **Modular Architecture:** Easy to maintain, scale, and extend
 
----
+
 
 ## **Screenshots / Demo**
 
@@ -27,7 +27,6 @@ _Coming soon._
 |---|---|---|---|
 |||||
 
----
 
 ## **Tech Stack**
 
@@ -39,7 +38,7 @@ _Coming soon._
 - **Charts & Reports:** MPAndroidChart / Jetpack Compose Charts
     
 
----
+
 
 ## **Modules**
 
@@ -52,7 +51,7 @@ _Coming soon._
 - **notifications:** Background workers for low-stock reminders and sync
     
 
----
+
 
 ## **Architecture**
 
@@ -62,7 +61,7 @@ _Coming soon._
 - WorkManager handles scheduled tasks and notifications
     
 
----
+
 
 ## **Roadmap / Planned Features**
 
@@ -72,7 +71,7 @@ _Coming soon._
 - Enhanced charts and dashboards
 - User-friendly setup wizard for first-time shop owners
     
----
+
 ## **License**
 
 This project is licensed under the MIT License. See the LICENSE file for details.
