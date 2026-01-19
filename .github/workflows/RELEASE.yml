@@ -64,7 +64,7 @@ jobs:
 #        uses: r0adkll/upload-google-play@v1  # Use action to upload AAB to Google Play Store
 #        with:
 #          serviceAccountJson: service-account-key.json  # Provide service account JSON for authentication
-#          packageName: com.githukudenis.dicta  # Specify the package name of your application
+#          packageName: com.githukudenis.smartduka  # Specify the package name of your application
 #          releaseFiles: app/build/outputs/bundle/release/app-release.aab  # Path to the generated AAB file
 #          track: production  # Specify/ the release track (internal, alpha, beta, production)
 #          status: draft
