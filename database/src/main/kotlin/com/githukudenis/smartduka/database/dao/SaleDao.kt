@@ -43,14 +43,7 @@ interface SaleDao {
     @Query("SELECT * FROM sales WHERE sale_id = :saleId")
     suspend fun getSaleById(saleId: String): SaleEntity?
 
-    @Query(
-        """
-                SELECT *
-                FROM sales
-                WHERE shop_id = :shopId
-                ORDER BY date DESC
-        """
-    )
+    @Query("SELECT * FROM sales WHERE shop_id = :shopId ORDER BY date DESC")
     fun observeSalesForShop(shopId: String): Flow<List<SaleEntity>>
 
     // ---------- Relations ----------

@@ -24,22 +24,12 @@ import com.githukudenis.smartduka.database.entity.SaleItemEntity
 interface SaleItemDao {
     @Insert suspend fun insertSaleItems(items: List<SaleItemEntity>)
 
-    @Query(
-        """
-                DELETE FROM sale_items
-                WHERE sale_id = :saleId
-                    AND product_id = :productId
-        """
-    )
+    @Query("DELETE FROM sale_items WHERE sale_id = :saleId AND product_id = :productId")
     suspend fun removeSaleItem(saleId: String, productId: String)
 
     @Query("DELETE FROM sale_items WHERE sale_id = :saleId")
     suspend fun deleteItemsForSale(saleId: String)
 
-    @Query("""
-                SELECT *
-                FROM sale_items
-                WHERE sale_id = :saleId
-        """)
+    @Query("SELECT * FROM sale_items WHERE sale_id = :saleId")
     suspend fun getItemsForSale(saleId: String): List<SaleItemEntity>
 }

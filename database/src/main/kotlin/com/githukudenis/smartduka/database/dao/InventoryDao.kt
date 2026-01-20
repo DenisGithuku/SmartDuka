@@ -32,12 +32,7 @@ interface InventoryDao {
     @Insert suspend fun insertMovement(movement: InventoryMovementEntity)
 
     @Query(
-        """
-                SELECT SUM(quantity)
-                FROM inventory_movements
-                WHERE product_id = :productId
-                    AND shop_id = :shopId
-        """
+        "SELECT SUM(quantity) FROM inventory_movements WHERE product_id = :productId AND shop_id = :shopId"
     )
     suspend fun calculateStock(shopId: String, productId: String): Int
 }

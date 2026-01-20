@@ -37,14 +37,6 @@ interface SupplierDao {
     @Query("SELECT * FROM suppliers WHERE supplier_id = :supplierId")
     suspend fun getById(supplierId: String): SupplierEntity?
 
-    @Query(
-        """
-                SELECT *
-                FROM suppliers
-                WHERE shop_id = :shopId
-                    AND archived = 0
-                ORDER BY name ASC
-        """
-    )
+    @Query("SELECT * FROM suppliers WHERE shop_id = :shopId AND archived = 0 ORDER BY name ASC")
     fun observeByShop(shopId: String): Flow<List<SupplierEntity>>
 }

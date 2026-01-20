@@ -41,15 +41,7 @@ interface ShopDao {
     @Query("SELECT * FROM shops WHERE shop_id = :shopId")
     suspend fun getById(shopId: String): ShopEntity?
 
-    @Query(
-        """
-                SELECT *
-                FROM shops
-                WHERE user_id = :userId
-                    AND archived = 0
-                ORDER BY created_at ASC
-        """
-    )
+    @Query("SELECT * FROM shops WHERE user_id = :userId AND archived = 0 ORDER BY created_at ASC")
     fun observeByUser(userId: String): Flow<List<ShopEntity>>
 
     @Transaction

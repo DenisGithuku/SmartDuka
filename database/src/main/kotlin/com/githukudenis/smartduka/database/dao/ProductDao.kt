@@ -39,14 +39,7 @@ interface ProductDao {
     @Query("SELECT * FROM products WHERE shop_id = :shopId")
     fun observeByShop(shopId: String): Flow<List<ProductEntity>>
 
-    @Query(
-        """
-                SELECT *
-                FROM products
-                WHERE shop_id = :shopId
-                    AND stock_quantity <= low_stock_threshold
-        """
-    )
+    @Query("SELECT * FROM products WHERE shop_id = :shopId AND stock_quantity <= low_stock_threshold")
     fun observeLowStock(shopId: String): Flow<List<ProductEntity>>
 
     @Transaction
