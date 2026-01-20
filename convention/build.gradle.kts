@@ -48,7 +48,7 @@ gradlePlugin {
             id = "smartduka.convention.module"
             implementationClass = "ModuleConventionPlugin"
         }
-        register("koin-convention"){
+        register("koin-convention") {
             id = "smartduka.convention.koin"
             implementationClass = "KoinConventionPlugin"
         }
@@ -59,6 +59,14 @@ gradlePlugin {
         register("firebase-convention") {
             id = "smartduka.convention.firebase"
             implementationClass = "FirebaseConventionPlugin"
+        }
+        register("android-test-convention") {
+            id = "smartduka.convention.android.test"
+            implementationClass = "AndroidTestConventionPlugin"
+        }
+        register("unit-test-convention") {
+            id = "smartduka.convention.unit.test"
+            implementationClass = "UnitTestConventionPlugin"
         }
     }
 }
