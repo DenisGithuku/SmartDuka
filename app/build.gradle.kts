@@ -41,6 +41,4 @@ android {
     }
 }
 
-dependencies {
-    implementation(project(AndroidModules.Core.DesignSystem))
-}
+dependencies { implementation(project(AndroidModules.Core.DesignSystem)) }
