@@ -1,3 +1,18 @@
+/*
+* Copyright 2026 Denis Githuku
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* https://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 package com.githukudenis.smartduka.database.entity
 
 import androidx.room.ColumnInfo
@@ -8,46 +23,30 @@ import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "inventory_movements",
-    foreignKeys = [
-        ForeignKey(
-            entity = ProductEntity::class,
-            parentColumns = ["product_id"],
-            childColumns = ["product_id"],
-            onDelete = ForeignKey.CASCADE
-        ),
-        ForeignKey(
-            entity = ShopEntity::class,
-            parentColumns = ["shop_id"],
-            childColumns = ["shop_id"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ],
-    indices = [
-        Index("product_id"),
-        Index("shop_id"),
-        Index("reference_id")
-    ]
+    foreignKeys =
+        [
+            ForeignKey(
+                entity = ProductEntity::class,
+                parentColumns = ["product_id"],
+                childColumns = ["product_id"],
+                onDelete = ForeignKey.CASCADE
+            ),
+            ForeignKey(
+                entity = ShopEntity::class,
+                parentColumns = ["shop_id"],
+                childColumns = ["shop_id"],
+                onDelete = ForeignKey.CASCADE
+            )
+        ],
+    indices = [Index("product_id"), Index("shop_id"), Index("reference_id")]
 )
 data class InventoryMovementEntity(
-    @PrimaryKey
-    @ColumnInfo(name = "movement_id")
-    val movementId: String,
-
-    @ColumnInfo(name = "product_id")
-    val productId: String,
-
-    @ColumnInfo(name = "shop_id")
-    val shopId: String,
-
+    @PrimaryKey @ColumnInfo(name = "movement_id") val movementId: String,
+    @ColumnInfo(name = "product_id") val productId: String,
+    @ColumnInfo(name = "shop_id") val shopId: String,
     val type: InventoryMovementType,
-
     val quantity: Int,
-
     val date: Long,
-
-    @ColumnInfo(name = "reference_id")
-    val referenceId: String?,
-
-    @ColumnInfo(name = "created_at")
-    val createdAt: Long
+    @ColumnInfo(name = "reference_id") val referenceId: String?,
+    @ColumnInfo(name = "created_at") val createdAt: Long
 )

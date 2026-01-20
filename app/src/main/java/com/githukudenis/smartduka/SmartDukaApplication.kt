@@ -31,7 +31,6 @@ class SmartDukaApplication : Application() {
         setupKoin()
     }
 
-
     private fun initTimber() {
         when {
             BuildConfig.DEBUG -> {
@@ -43,7 +42,6 @@ class SmartDukaApplication : Application() {
                     }
                 )
             }
-
             else -> Timber.plant(CrashlyticsTree())
         }
     }
@@ -55,7 +53,6 @@ class SmartDukaApplication : Application() {
             modules(appModule)
         }
     }
-
 }
 
 private class CrashlyticsTree : Timber.Tree() {

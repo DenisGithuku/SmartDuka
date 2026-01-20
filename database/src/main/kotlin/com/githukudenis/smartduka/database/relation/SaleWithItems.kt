@@ -13,10 +13,14 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.githukudenis.smartduka.database.entity
+package com.githukudenis.smartduka.database.relation
 
-enum class PaymentStatus {
-    PAID,
-    PENDING,
-    FAILED
-}
+import androidx.room.Embedded
+import androidx.room.Relation
+import com.githukudenis.smartduka.database.entity.SaleEntity
+import com.githukudenis.smartduka.database.entity.SaleItemEntity
+
+data class SaleWithItems(
+    @Embedded val sale: SaleEntity,
+    @Relation(parentColumn = "sale_id", entityColumn = "sale_id") val items: List<SaleItemEntity>
+)
