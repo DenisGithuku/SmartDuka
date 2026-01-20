@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.githukudenis.smartduka.debug" />
+                  <option name="mobileSdkAppId" value="1:258596463888:android:d0dab3aaf6d8642f2cf195" />
+                  <option name="projectId" value="smart-duka-70b0c" />
+                  <option name="projectNumber" value="258596463888" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
