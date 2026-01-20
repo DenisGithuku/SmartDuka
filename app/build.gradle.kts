@@ -1,4 +1,5 @@
 import configuration.AndroidSdk
+import extensions.implementation
 
 plugins {
     alias(libs.plugins.smartduka.android.application)
@@ -39,3 +40,5 @@ android {
         }
     }
 }
+
+dependencies { implementation(project(AndroidModules.Core.DesignSystem)) }

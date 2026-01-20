@@ -25,7 +25,6 @@ class ApplicationConventionPlugin : Plugin<Project> {
             }
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
             dependencies {
-
                 // testing
                 androidTestImplementation(kotlin("test"))
                 testImplementation(kotlin("test"))
