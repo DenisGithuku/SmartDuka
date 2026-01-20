@@ -19,13 +19,18 @@ import android.app.Application
 import android.util.Log
 import com.google.firebase.crashlytics.BuildConfig
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 import timber.log.Timber
 
 class SmartDukaApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initTimber()
+        setupKoin()
     }
+
 
     private fun initTimber() {
         when {
@@ -38,9 +43,19 @@ class SmartDukaApplication : Application() {
                     }
                 )
             }
+
             else -> Timber.plant(CrashlyticsTree())
         }
     }
+
+    private fun setupKoin() {
+        startKoin {
+            androidLogger()
+            androidContext(this@SmartDukaApplication)
+            modules(appModule)
+        }
+    }
+
 }
 
 private class CrashlyticsTree : Timber.Tree() {
