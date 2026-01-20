@@ -23,3 +23,4 @@ dependencyResolutionManagement {
 rootProject.name = "SmartDuka"
 include(":app")
 include(":designsystem")
+include(":database")
