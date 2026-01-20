@@ -1,4 +1,5 @@
 import configuration.AndroidSdk
+import extensions.implementation
 
 plugins {
     alias(libs.plugins.smartduka.android.application)
@@ -38,4 +39,8 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+}
+
+dependencies {
+    implementation(project(AndroidModules.Core.DesignSystem))
 }

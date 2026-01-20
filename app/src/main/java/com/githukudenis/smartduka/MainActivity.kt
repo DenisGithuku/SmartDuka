@@ -28,7 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.githukudenis.smartduka.ui.theme.SmartDukaTheme
+import com.githukudenis.smartduka.designsystem.ui.SmartDukaAppTheme
 import com.google.firebase.BuildConfig
 
 class MainActivity : ComponentActivity() {
@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            SmartDukaTheme {
+            SmartDukaAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     GettingStarted(text = BuildConfig.VERSION_NAME, modifier = Modifier.padding(innerPadding))
                 }
@@ -56,5 +56,5 @@ fun GettingStarted(
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    SmartDukaTheme { GettingStarted() }
+    SmartDukaAppTheme { GettingStarted() }
 }
