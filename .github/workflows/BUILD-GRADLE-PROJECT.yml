@@ -32,8 +32,8 @@ jobs:
 #        run: |
 #          echo "${{ secrets.KEYSTORE_BASE_64 }}" | base64 --decode > keystore.jks
 #
-#      - name: Create missing schema directory
-#        run: mkdir -p core/model/schemas
+      - name: Create missing schema directory
+        run: mkdir -p database/schemas
 #
 #      - name: Run build with Gradle Wrapper
 #        env:

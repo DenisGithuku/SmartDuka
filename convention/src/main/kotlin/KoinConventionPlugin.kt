@@ -12,7 +12,7 @@ import org.gradle.kotlin.dsl.getByType
 class KoinConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            pluginManager.apply("com.google.devtools.ksp") // Apply KSP plugin
+            pluginManager.apply(libs.findPlugin("ksp").get().get().pluginId) // Apply KSP plugin
 
 
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")

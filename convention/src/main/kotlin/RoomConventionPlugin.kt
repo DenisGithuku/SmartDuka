@@ -14,7 +14,7 @@ import java.io.File
 class RoomConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            pluginManager.apply("com.google.devtools.ksp")
+            pluginManager.apply(libs.findPlugin("ksp").get().get().pluginId)
 
             extensions.configure<KspExtension> {
                 /*
