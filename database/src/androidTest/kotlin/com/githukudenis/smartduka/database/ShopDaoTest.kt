@@ -1,16 +1,31 @@
+/*
+* Copyright 2026 Denis Githuku
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* https://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 package com.githukudenis.smartduka.database
 
 import com.githukudenis.smartduka.database.TestDataFactory.product
 import com.githukudenis.smartduka.database.TestDataFactory.sale
 import com.githukudenis.smartduka.database.TestDataFactory.shop
 import com.githukudenis.smartduka.database.TestDataFactory.supplier
+import kotlin.test.assertContains
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import kotlin.test.assertContains
 
 class ShopDaoTest : BaseRoomTest() {
 
@@ -18,7 +33,6 @@ class ShopDaoTest : BaseRoomTest() {
     fun insertAndGetById_returnsShop() = runTest {
         val user = TestDataFactory.user()
         userDao.insert(user)
-
 
         val shop = shop(user.userId)
 
@@ -126,7 +140,5 @@ class ShopDaoTest : BaseRoomTest() {
         assertEquals(1, result.suppliers.size)
         assertEquals(supplier.supplierId, result.suppliers.first().supplierId)
         assertContains(result.suppliers.map { it.supplierId }, supplier.supplierId)
-
-
     }
 }

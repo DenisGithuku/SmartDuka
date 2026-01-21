@@ -119,15 +119,16 @@ object TestDataFactory {
             createdAt = now()
         )
 
-    fun supplier(shopId: String) = SupplierEntity(
-        supplierId = UUID.randomUUID().toString(),
-        shopId = shopId,
-        name = "Supplier Ltd",
-        contact = "0700000000",
-        createdAt = now(),
-        updatedAt = now(),
-        archived = false
-    )
+    fun supplier(shopId: String, name: String = "Supplier Ltd") =
+        SupplierEntity(
+            supplierId = UUID.randomUUID().toString(),
+            shopId = shopId,
+            name = name,
+            contact = "0700000000",
+            createdAt = now(),
+            updatedAt = now(),
+            archived = false
+        )
 
     private fun now() = System.currentTimeMillis()
 }
