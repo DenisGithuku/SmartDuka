@@ -22,6 +22,7 @@ import com.githukudenis.smartduka.database.entity.ProductEntity
 import com.githukudenis.smartduka.database.entity.SaleEntity
 import com.githukudenis.smartduka.database.entity.SaleItemEntity
 import com.githukudenis.smartduka.database.entity.ShopEntity
+import com.githukudenis.smartduka.database.entity.SupplierEntity
 import com.githukudenis.smartduka.database.entity.UserEntity
 import java.util.UUID
 
@@ -117,6 +118,16 @@ object TestDataFactory {
             referenceId = null,
             createdAt = now()
         )
+
+    fun supplier(shopId: String) = SupplierEntity(
+        supplierId = UUID.randomUUID().toString(),
+        shopId = shopId,
+        name = "Supplier Ltd",
+        contact = "0700000000",
+        createdAt = now(),
+        updatedAt = now(),
+        archived = false
+    )
 
     private fun now() = System.currentTimeMillis()
 }

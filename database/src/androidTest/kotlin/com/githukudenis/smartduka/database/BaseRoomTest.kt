@@ -24,6 +24,7 @@ import com.githukudenis.smartduka.database.dao.ProductDao
 import com.githukudenis.smartduka.database.dao.SaleDao
 import com.githukudenis.smartduka.database.dao.SaleItemDao
 import com.githukudenis.smartduka.database.dao.ShopDao
+import com.githukudenis.smartduka.database.dao.SupplierDao
 import com.githukudenis.smartduka.database.dao.UserDao
 import org.junit.After
 import org.junit.Before
@@ -39,6 +40,7 @@ abstract class BaseRoomTest {
     protected lateinit var productDao: ProductDao
     protected lateinit var saleDao: SaleDao
     protected lateinit var saleItemDao: SaleItemDao
+    protected lateinit var supplierDao: SupplierDao
 
     @Before
     fun setup() {
@@ -57,6 +59,7 @@ abstract class BaseRoomTest {
         productDao = database.productDao()
         saleDao = database.saleDao()
         saleItemDao = database.saleItemDao()
+        supplierDao = database.supplierDao()
     }
 
     @After
