@@ -7,6 +7,4 @@ plugins {
 
 android { namespace = "com.githukudenis.smartduka.database" }
 
-dependencies {
-    implementation(libs.findLibrary("androidx-room-testing").get())
-}
+dependencies { implementation(libs.findLibrary("androidx-room-testing").get()) }
