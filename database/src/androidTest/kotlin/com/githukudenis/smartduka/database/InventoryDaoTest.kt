@@ -131,4 +131,3 @@ class InventoryDaoTest : BaseRoomTest() {
         return productEntity
     }
 }
-

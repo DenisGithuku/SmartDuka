@@ -15,8 +15,6 @@
 */
 package com.githukudenis.smartduka.database
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.filters.SmallTest
 import com.githukudenis.smartduka.database.entity.InventoryMovementType
 import com.githukudenis.smartduka.database.entity.ProductEntity
 import com.githukudenis.smartduka.database.entity.ShopEntity
@@ -24,8 +22,6 @@ import kotlin.test.assertEquals
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import org.junit.runner.RunWith
-
 
 class ProductDaoTest : BaseRoomTest() {
 

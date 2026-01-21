@@ -40,7 +40,6 @@ abstract class BaseRoomTest {
     protected lateinit var saleDao: SaleDao
     protected lateinit var saleItemDao: SaleItemDao
 
-
     @Before
     fun setup() {
         // Create an in-memory database for testing
