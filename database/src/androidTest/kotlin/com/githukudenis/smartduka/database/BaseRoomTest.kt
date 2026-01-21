@@ -21,6 +21,8 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.githukudenis.smartduka.database.dao.InventoryDao
 import com.githukudenis.smartduka.database.dao.ProductDao
+import com.githukudenis.smartduka.database.dao.SaleDao
+import com.githukudenis.smartduka.database.dao.SaleItemDao
 import com.githukudenis.smartduka.database.dao.ShopDao
 import com.githukudenis.smartduka.database.dao.UserDao
 import org.junit.After
@@ -35,6 +37,9 @@ abstract class BaseRoomTest {
     protected lateinit var userDao: UserDao
     protected lateinit var shopDao: ShopDao
     protected lateinit var productDao: ProductDao
+    protected lateinit var saleDao: SaleDao
+    protected lateinit var saleItemDao: SaleItemDao
+
 
     @Before
     fun setup() {
@@ -51,6 +56,8 @@ abstract class BaseRoomTest {
         userDao = database.userDao()
         shopDao = database.shopDao()
         productDao = database.productDao()
+        saleDao = database.saleDao()
+        saleItemDao = database.saleItemDao()
     }
 
     @After

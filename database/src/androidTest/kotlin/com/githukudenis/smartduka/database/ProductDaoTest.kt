@@ -26,8 +26,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.runner.RunWith
 
-@SmallTest
-@RunWith(AndroidJUnit4::class)
+
 class ProductDaoTest : BaseRoomTest() {
 
     @Test
