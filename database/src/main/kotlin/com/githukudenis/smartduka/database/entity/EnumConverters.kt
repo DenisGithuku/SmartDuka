@@ -16,6 +16,7 @@
 package com.githukudenis.smartduka.database.entity
 
 import androidx.room.TypeConverter
+import com.githukudenis.smartduka.domain.model.InventoryMovementType
 import com.githukudenis.smartduka.domain.model.PaymentStatus
 
 class EnumConverters {
