@@ -13,19 +13,15 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.githukudenis.smartduka.database.entity
+package com.githukudenis.smartduka.data.mapper.mapper
 
-import androidx.room.TypeConverter
-import com.githukudenis.smartduka.domain.model.PaymentStatus
+import com.githukudenis.smartduka.database.entity.ShopEntity
+import com.githukudenis.smartduka.domain.model.Shop
 
-class EnumConverters {
+// Maps user to and from dtos and entitites
+fun ShopEntity.toShop(): Shop = Shop(shopId, userId, archived, name, location)
 
-    @TypeConverter fun fromPaymentStatus(value: PaymentStatus): String = value.name
-
-    @TypeConverter fun toPaymentStatus(value: String): PaymentStatus = PaymentStatus.valueOf(value)
-
-    @TypeConverter fun fromMovementType(value: InventoryMovementType): String = value.name
-
-    @TypeConverter
-    fun toMovementType(value: String): InventoryMovementType = InventoryMovementType.valueOf(value)
+fun Shop.toShopEntity(): ShopEntity {
+    val now: Long = System.currentTimeMillis()
+    return ShopEntity(shopId, userId, archived, name, location, now, now)
 }

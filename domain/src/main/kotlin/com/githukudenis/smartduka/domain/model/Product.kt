@@ -13,10 +13,16 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.githukudenis.smartduka.database.entity
+package com.githukudenis.smartduka.domain.model
 
-enum class PaymentStatus {
-    PAID,
-    PENDING,
-    FAILED
-}
+data class Product(
+    val productId: String,
+    val shopId: String,
+    val name: String,
+    val description: String?,
+    val price: Double,
+    val archived: Boolean,
+    val costPrice: Double?,
+    val stockQuantity: Int,
+    val lowStockThreshold: Int
+)

@@ -13,19 +13,12 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.githukudenis.smartduka.database.entity
+package com.githukudenis.smartduka.domain.model
 
-import androidx.room.TypeConverter
-import com.githukudenis.smartduka.domain.model.PaymentStatus
-
-class EnumConverters {
-
-    @TypeConverter fun fromPaymentStatus(value: PaymentStatus): String = value.name
-
-    @TypeConverter fun toPaymentStatus(value: String): PaymentStatus = PaymentStatus.valueOf(value)
-
-    @TypeConverter fun fromMovementType(value: InventoryMovementType): String = value.name
-
-    @TypeConverter
-    fun toMovementType(value: String): InventoryMovementType = InventoryMovementType.valueOf(value)
-}
+data class Supplier(
+    val supplierId: String,
+    val shopId: String,
+    val name: String,
+    val phone: String,
+    val archived: Boolean
+)

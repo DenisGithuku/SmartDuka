@@ -18,9 +18,9 @@ package com.githukudenis.smartduka.domain.repository
 import com.githukudenis.smartduka.domain.model.User
 
 interface AuthRepository {
-    suspend fun register(email: String, password: String, name: String): User
+    suspend fun registerUser(email: String, password: String, name: String): User
 
-    suspend fun login(email: String, password: String): User
+    suspend fun loginUser(email: String, password: String): User
 
     suspend fun logout()
 
