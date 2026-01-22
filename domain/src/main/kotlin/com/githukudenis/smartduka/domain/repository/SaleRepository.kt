@@ -21,9 +21,9 @@ import com.githukudenis.smartduka.domain.model.SaleWithItems
 import kotlinx.coroutines.flow.Flow
 
 interface SaleRepository {
-    suspend fun insertSale(sale: Sale): Sale
+    suspend fun insertSale(sale: Sale)
 
-    suspend fun updateSale(sale: Sale): Sale
+    suspend fun updateSale(sale: Sale)
 
     suspend fun deleteSale(saleId: String)
 

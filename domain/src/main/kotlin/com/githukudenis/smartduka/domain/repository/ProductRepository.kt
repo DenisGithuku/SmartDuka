@@ -20,9 +20,9 @@ import com.githukudenis.smartduka.domain.model.ProductWithInventoryMovements
 import kotlinx.coroutines.flow.Flow
 
 interface ProductRepository {
-    suspend fun insertProduct(product: Product): Product
+    suspend fun insertProduct(product: Product)
 
-    suspend fun updateProduct(product: Product): Product
+    suspend fun updateProduct(product: Product)
 
     suspend fun archiveProduct(productId: String)
 

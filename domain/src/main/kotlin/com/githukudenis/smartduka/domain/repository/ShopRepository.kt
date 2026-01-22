@@ -22,9 +22,9 @@ import com.githukudenis.smartduka.domain.model.ShopWithSuppliers
 import kotlinx.coroutines.flow.Flow
 
 interface ShopRepository {
-    suspend fun insertShop(shop: Shop): Shop
+    suspend fun insertShop(shop: Shop)
 
-    suspend fun updateShop(shop: Shop): Shop
+    suspend fun updateShop(shop: Shop)
 
     suspend fun getShopById(shopId: String): Shop?
 

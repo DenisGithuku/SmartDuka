@@ -19,9 +19,9 @@ import com.githukudenis.smartduka.domain.model.Supplier
 import kotlinx.coroutines.flow.Flow
 
 interface SupplierRepository {
-    suspend fun insertSupplier(supplier: Supplier): Supplier
+    suspend fun insertSupplier(supplier: Supplier)
 
-    suspend fun updateSupplier(supplier: Supplier): Supplier
+    suspend fun updateSupplier(supplier: Supplier)
 
     suspend fun archiveSupplier(supplierId: String)
 
