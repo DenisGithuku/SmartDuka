@@ -15,4 +15,42 @@
 */
 package com.githukudenis.smartduka.data.datasource.local
 
+import com.githukudenis.smartduka.database.dao.UserDao
+import com.githukudenis.smartduka.database.entity.UserEntity
+import com.githukudenis.smartduka.database.relation.UserWithShops
+import kotlinx.coroutines.flow.Flow
+
 // Local datasource for user data
+interface UserLocalDataSource {
+    suspend fun insertUser(user: UserEntity)
+
+    suspend fun updateUser(user: UserEntity)
+
+    suspend fun archiveUser(userId: String)
+
+    suspend fun getUserById(userId: String): UserEntity?
+
+    fun observeUserWithShops(userId: String): Flow<UserWithShops>
+}
+
+class UserLocalDataSourceImpl(private val userDao: UserDao) : UserLocalDataSource {
+    override suspend fun insertUser(user: UserEntity) {
+        userDao.insert(user)
+    }
+
+    override suspend fun updateUser(user: UserEntity) {
+        userDao.update(user)
+    }
+
+    override suspend fun archiveUser(userId: String) {
+        userDao.archive(userId)
+    }
+
+    override suspend fun getUserById(userId: String): UserEntity? {
+        return userDao.getById(userId)
+    }
+
+    override fun observeUserWithShops(userId: String): Flow<UserWithShops> {
+        return userDao.observeUserWithShops(userId)
+    }
+}
