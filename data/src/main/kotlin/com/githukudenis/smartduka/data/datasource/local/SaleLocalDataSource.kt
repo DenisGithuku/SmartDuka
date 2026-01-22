@@ -15,4 +15,71 @@
 */
 package com.githukudenis.smartduka.data.datasource.local
 
+import com.githukudenis.smartduka.database.dao.SaleDao
+import com.githukudenis.smartduka.database.dao.SaleItemDao
+import com.githukudenis.smartduka.database.entity.SaleEntity
+import com.githukudenis.smartduka.database.entity.SaleItemEntity
+import com.githukudenis.smartduka.database.relation.SaleWithItems
+import kotlinx.coroutines.flow.Flow
+
 // Local datasource for sale data
+
+interface SaleLocalDataSource {
+    suspend fun insertSale(sale: SaleEntity)
+
+    suspend fun updateSale(sale: SaleEntity)
+
+    suspend fun deleteSale(saleId: String)
+
+    suspend fun getSaleById(saleId: String): SaleEntity?
+
+    fun observeSalesForShop(shopId: String): Flow<List<SaleEntity>>
+
+    fun observeSaleWithItems(saleId: String): Flow<SaleWithItems>
+
+    suspend fun insertSaleItems(items: List<SaleItemEntity>)
+
+    suspend fun removeSaleItem(saleId: String, productId: String)
+
+    suspend fun deleteItemsForSale(saleId: String)
+
+    suspend fun getItemsForSale(saleId: String): List<SaleItemEntity>
+}
+
+class SalesLocalDataSourceImpl(private val saleDao: SaleDao, private val saleItemDao: SaleItemDao) :
+    SaleLocalDataSource {
+    override suspend fun insertSale(sale: SaleEntity) {
+        saleDao.insertSale(sale)
+    }
+
+    override suspend fun updateSale(sale: SaleEntity) {
+        saleDao.updateSale(sale)
+    }
+
+    override suspend fun deleteSale(saleId: String) {
+        saleDao.deleteSale(saleId)
+    }
+
+    override suspend fun getSaleById(saleId: String): SaleEntity? = saleDao.getSaleById(saleId)
+
+    override fun observeSalesForShop(shopId: String): Flow<List<SaleEntity>> =
+        saleDao.observeSalesForShop(shopId)
+
+    override fun observeSaleWithItems(saleId: String): Flow<SaleWithItems> =
+        saleDao.observeSaleWithItems(saleId)
+
+    override suspend fun insertSaleItems(items: List<SaleItemEntity>) {
+        saleItemDao.insertSaleItems(items)
+    }
+
+    override suspend fun removeSaleItem(saleId: String, productId: String) {
+        saleItemDao.removeSaleItem(saleId, productId)
+    }
+
+    override suspend fun deleteItemsForSale(saleId: String) {
+        saleItemDao.deleteItemsForSale(saleId)
+    }
+
+    override suspend fun getItemsForSale(saleId: String): List<SaleItemEntity> =
+        saleItemDao.getItemsForSale(saleId)
+}
