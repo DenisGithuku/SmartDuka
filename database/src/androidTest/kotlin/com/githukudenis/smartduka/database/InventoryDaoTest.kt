@@ -15,10 +15,10 @@
 */
 package com.githukudenis.smartduka.database
 
-import com.githukudenis.smartduka.database.entity.InventoryMovementType
 import com.githukudenis.smartduka.database.entity.ProductEntity
 import com.githukudenis.smartduka.database.entity.ShopEntity
 import com.githukudenis.smartduka.database.entity.UserEntity
+import com.githukudenis.smartduka.domain.model.InventoryMovementType
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test

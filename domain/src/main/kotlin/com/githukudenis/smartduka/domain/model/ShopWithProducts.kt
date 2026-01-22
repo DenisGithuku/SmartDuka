@@ -13,10 +13,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.githukudenis.smartduka.database.entity
+package com.githukudenis.smartduka.domain.model
 
-enum class InventoryMovementType {
-    SALE,
-    RESTOCK,
-    ADJUSTMENT
-}
+data class ShopWithProducts(val shop: Shop, val products: List<Product>)

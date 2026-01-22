@@ -20,6 +20,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.githukudenis.smartduka.domain.model.InventoryMovementType
 
 @Entity(
     tableName = "inventory_movements",

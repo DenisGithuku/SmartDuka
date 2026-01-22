@@ -15,9 +15,9 @@
 */
 package com.githukudenis.smartduka.database
 
-import com.githukudenis.smartduka.database.entity.InventoryMovementType
 import com.githukudenis.smartduka.database.entity.ProductEntity
 import com.githukudenis.smartduka.database.entity.ShopEntity
+import com.githukudenis.smartduka.domain.model.InventoryMovementType
 import kotlin.test.assertEquals
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest

@@ -5,4 +5,7 @@ plugins {
 
 android { namespace = "com.githukudenis.smartduka.data" }
 
-dependencies { implementation(project(AndroidModules.Database)) }
+dependencies {
+    implementation(project(AndroidModules.Database))
+    implementation(project(AndroidModules.Domain))
+}
