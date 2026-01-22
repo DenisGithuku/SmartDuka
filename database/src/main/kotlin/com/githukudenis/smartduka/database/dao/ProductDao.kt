@@ -33,6 +33,9 @@ interface ProductDao {
 
     @Update suspend fun update(product: ProductEntity)
 
+    @Query("SELECT * FROM products WHERE product_id = :productId")
+    suspend fun getById(productId: String): ProductEntity?
+
     @Query("UPDATE products SET archived = 1 WHERE product_id = :productId")
     suspend fun archive(productId: String)
 
