@@ -15,4 +15,23 @@
 */
 package com.githukudenis.smartduka.data.datasource.local
 
+import com.githukudenis.smartduka.database.dao.InventoryDao
+import com.githukudenis.smartduka.database.entity.InventoryMovementEntity
+
 // Local datasource for inventory data
+interface InventoryLocalDataSource {
+    suspend fun insertMovement(movement: InventoryMovementEntity)
+
+    suspend fun calculateStock(shopId: String, productId: String): Int
+}
+
+class InventoryLocalDataSourceImpl(private val inventoryDao: InventoryDao) :
+    InventoryLocalDataSource {
+    override suspend fun insertMovement(movement: InventoryMovementEntity) {
+        inventoryDao.insertMovement(movement)
+    }
+
+    override suspend fun calculateStock(shopId: String, productId: String): Int {
+        return inventoryDao.calculateStock(shopId, productId)
+    }
+}

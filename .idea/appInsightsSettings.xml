@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AppInsightsSettings">
+    <option name="selectedTabId" value="Android Vitals" />
     <option name="tabSettings">
       <map>
         <entry key="Firebase Crashlytics">
@@ -8,7 +9,7 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.githukudenis.smartduka.debug" />
+                  <option name="appId" value="com.githukudenis.smartduka" />
                   <option name="mobileSdkAppId" value="1:258596463888:android:d0dab3aaf6d8642f2cf195" />
                   <option name="projectId" value="smart-duka-70b0c" />
                   <option name="projectNumber" value="258596463888" />

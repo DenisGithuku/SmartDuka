@@ -15,4 +15,56 @@
 */
 package com.githukudenis.smartduka.data.datasource.local
 
+import com.githukudenis.smartduka.database.dao.ShopDao
+import com.githukudenis.smartduka.database.entity.ShopEntity
+import com.githukudenis.smartduka.database.relation.ShopWithProducts
+import com.githukudenis.smartduka.database.relation.ShopWithSales
+import com.githukudenis.smartduka.database.relation.ShopWithSuppliers
+import kotlinx.coroutines.flow.Flow
+
 // Local datasource for shop data
+interface ShopLocalDataSource {
+    suspend fun insertShop(shop: ShopEntity)
+
+    suspend fun updateShop(shop: ShopEntity)
+
+    suspend fun getShopById(shopId: String): ShopEntity?
+
+    fun observeShopsByUser(userId: String): Flow<List<ShopEntity>>
+
+    fun observeShopWithProducts(shopId: String): Flow<ShopWithProducts>
+
+    fun observeShopWithSales(shopId: String): Flow<ShopWithSales>
+
+    fun observeShopWithSuppliers(shopId: String): Flow<ShopWithSuppliers>
+}
+
+class ShopLocalDataSourceImpl(private val shopDao: ShopDao) : ShopLocalDataSource {
+    override suspend fun insertShop(shop: ShopEntity) {
+        shopDao.insert(shop)
+    }
+
+    override suspend fun updateShop(shop: ShopEntity) {
+        shopDao.update(shop)
+    }
+
+    override suspend fun getShopById(shopId: String): ShopEntity? {
+        return shopDao.getById(shopId)
+    }
+
+    override fun observeShopsByUser(userId: String): Flow<List<ShopEntity>> {
+        return shopDao.observeByUser(userId)
+    }
+
+    override fun observeShopWithProducts(shopId: String): Flow<ShopWithProducts> {
+        return shopDao.observeShopWithProducts(shopId)
+    }
+
+    override fun observeShopWithSales(shopId: String): Flow<ShopWithSales> {
+        return shopDao.observeShopWithSales(shopId)
+    }
+
+    override fun observeShopWithSuppliers(shopId: String): Flow<ShopWithSuppliers> {
+        return shopDao.observeShopWithSuppliers(shopId)
+    }
+}

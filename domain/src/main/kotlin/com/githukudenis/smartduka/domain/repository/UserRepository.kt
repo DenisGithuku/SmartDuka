@@ -18,7 +18,7 @@ package com.githukudenis.smartduka.domain.repository
 import com.githukudenis.smartduka.domain.model.User
 
 interface UserRepository {
-    suspend fun updateProfile(user: User): User
+    suspend fun updateProfile(user: User)
 
-    suspend fun getUserById(userId: String): User
+    suspend fun getUserById(userId: String)
 }
