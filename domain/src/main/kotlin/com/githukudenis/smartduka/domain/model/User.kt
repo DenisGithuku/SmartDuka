@@ -15,4 +15,4 @@
 */
 package com.githukudenis.smartduka.domain.model
 
-data class User(val userId: String, val name: String, val email: String?, val archived: Boolean)
+data class User(val userId: String, val name: String, val archived: Boolean)

@@ -23,8 +23,7 @@ import androidx.room.PrimaryKey
 data class UserEntity(
     @PrimaryKey @ColumnInfo(name = "user_id") val userId: String,
     val name: String,
-    val email: String?,
     val archived: Boolean,
-    @ColumnInfo(name = "created_at") override val createdAt: Long,
-    @ColumnInfo(name = "updated_at") override val updatedAt: Long?
+    @ColumnInfo(name = "created_at") override val createdAt: Long? = null,
+    @ColumnInfo(name = "updated_at") override val updatedAt: Long? = null
 ) : Auditable
