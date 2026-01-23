@@ -19,7 +19,7 @@ import com.githukudenis.smartduka.database.dao.SaleDao
 import com.githukudenis.smartduka.database.dao.SaleItemDao
 import com.githukudenis.smartduka.database.entity.SaleEntity
 import com.githukudenis.smartduka.database.entity.SaleItemEntity
-import com.githukudenis.smartduka.database.relation.SaleWithItems
+import com.githukudenis.smartduka.database.relation.SaleWithItemsEntity
 import kotlinx.coroutines.flow.Flow
 
 // Local datasource for sale data
@@ -35,7 +35,7 @@ interface SaleLocalDataSource {
 
     fun observeSalesForShop(shopId: String): Flow<List<SaleEntity>>
 
-    fun observeSaleWithItems(saleId: String): Flow<SaleWithItems>
+    fun observeSaleWithItems(saleId: String): Flow<SaleWithItemsEntity>
 
     suspend fun insertSaleItems(items: List<SaleItemEntity>)
 
@@ -65,7 +65,7 @@ class SalesLocalDataSourceImpl(private val saleDao: SaleDao, private val saleIte
     override fun observeSalesForShop(shopId: String): Flow<List<SaleEntity>> =
         saleDao.observeSalesForShop(shopId)
 
-    override fun observeSaleWithItems(saleId: String): Flow<SaleWithItems> =
+    override fun observeSaleWithItems(saleId: String): Flow<SaleWithItemsEntity> =
         saleDao.observeSaleWithItems(saleId)
 
     override suspend fun insertSaleItems(items: List<SaleItemEntity>) {

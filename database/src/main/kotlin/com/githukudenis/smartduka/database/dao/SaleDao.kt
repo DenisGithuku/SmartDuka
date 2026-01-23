@@ -21,7 +21,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import com.githukudenis.smartduka.database.entity.SaleEntity
-import com.githukudenis.smartduka.database.relation.SaleWithItems
+import com.githukudenis.smartduka.database.relation.SaleWithItemsEntity
 import kotlinx.coroutines.flow.Flow
 
 // Sale operations coordinate transactions:
@@ -50,5 +50,5 @@ interface SaleDao {
 
     @Transaction
     @Query("SELECT * FROM sales WHERE sale_id = :saleId")
-    fun observeSaleWithItems(saleId: String): Flow<SaleWithItems>
+    fun observeSaleWithItems(saleId: String): Flow<SaleWithItemsEntity>
 }
