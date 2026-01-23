@@ -22,6 +22,5 @@ import com.githukudenis.smartduka.domain.model.Shop
 fun ShopEntity.toShop(): Shop = Shop(shopId, userId, archived, name, location)
 
 fun Shop.toShopEntity(): ShopEntity {
-    val now: Long = System.currentTimeMillis()
-    return ShopEntity(shopId, userId, archived, name, location, now, now)
+    return ShopEntity(shopId, userId, archived, name, location)
 }
