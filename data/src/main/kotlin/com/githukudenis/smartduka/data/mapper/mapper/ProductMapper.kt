@@ -15,8 +15,12 @@
 */
 package com.githukudenis.smartduka.data.mapper.mapper
 
+import com.githukudenis.smartduka.database.entity.InventoryMovementEntity
 import com.githukudenis.smartduka.database.entity.ProductEntity
+import com.githukudenis.smartduka.database.relation.ProductWithInventoryMovementsEntity
+import com.githukudenis.smartduka.domain.model.InventoryMovement
 import com.githukudenis.smartduka.domain.model.Product
+import com.githukudenis.smartduka.domain.model.ProductWithInventoryMovements
 
 // Maps products from entities to domain objects and vice versa
 fun ProductEntity.toDomain(): Product {
@@ -48,4 +52,12 @@ fun Product.toEntity(): ProductEntity {
         now,
         now
     )
+}
+
+fun ProductWithInventoryMovementsEntity.toDomain(): ProductWithInventoryMovements {
+    return ProductWithInventoryMovements(product.toDomain(), movements.map(InventoryMovementEntity::toDomain))
+}
+
+fun ProductWithInventoryMovements.toEntity(): ProductWithInventoryMovementsEntity {
+    return ProductWithInventoryMovementsEntity(product.toEntity(), inventoryMovements.map(InventoryMovement::toEntity))
 }

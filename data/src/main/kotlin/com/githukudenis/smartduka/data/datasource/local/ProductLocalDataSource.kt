@@ -17,7 +17,7 @@ package com.githukudenis.smartduka.data.datasource.local
 
 import com.githukudenis.smartduka.database.dao.ProductDao
 import com.githukudenis.smartduka.database.entity.ProductEntity
-import com.githukudenis.smartduka.database.relation.ProductWithInventoryMovements
+import com.githukudenis.smartduka.database.relation.ProductWithInventoryMovementsEntity
 import kotlinx.coroutines.flow.Flow
 
 // Local datasource for product data
@@ -34,7 +34,7 @@ interface ProductLocalDataSource {
 
     fun observeLowStock(shopId: String): Flow<List<ProductEntity>>
 
-    fun observeProductWithInventoryMovements(productId: String): Flow<ProductWithInventoryMovements>
+    fun observeProductWithInventoryMovements(productId: String): Flow<ProductWithInventoryMovementsEntity>
 }
 
 class ProductLocalDataSourceImpl(private val productDao: ProductDao) : ProductLocalDataSource {
@@ -64,7 +64,7 @@ class ProductLocalDataSourceImpl(private val productDao: ProductDao) : ProductLo
 
     override fun observeProductWithInventoryMovements(
         productId: String
-    ): Flow<ProductWithInventoryMovements> {
+    ): Flow<ProductWithInventoryMovementsEntity> {
         return productDao.observeProductWithInventoryMovements(productId)
     }
 }

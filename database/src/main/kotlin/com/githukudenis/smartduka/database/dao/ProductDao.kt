@@ -21,7 +21,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import com.githukudenis.smartduka.database.entity.ProductEntity
-import com.githukudenis.smartduka.database.relation.ProductWithInventoryMovements
+import com.githukudenis.smartduka.database.relation.ProductWithInventoryMovementsEntity
 import kotlinx.coroutines.flow.Flow
 
 // Product operations manage product metadata only.
@@ -47,5 +47,5 @@ interface ProductDao {
 
     @Transaction
     @Query("SELECT * FROM products WHERE product_id = :productId")
-    fun observeProductWithInventoryMovements(productId: String): Flow<ProductWithInventoryMovements>
+    fun observeProductWithInventoryMovements(productId: String): Flow<ProductWithInventoryMovementsEntity>
 }

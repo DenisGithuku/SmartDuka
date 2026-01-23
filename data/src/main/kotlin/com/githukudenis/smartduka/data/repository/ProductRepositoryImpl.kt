@@ -15,4 +15,52 @@
 */
 package com.githukudenis.smartduka.data.repository
 
-// Will contain ProductRepository implementation
+import com.githukudenis.smartduka.data.datasource.local.ProductLocalDataSource
+import com.githukudenis.smartduka.data.mapper.mapper.toDomain
+import com.githukudenis.smartduka.data.mapper.mapper.toEntity
+import com.githukudenis.smartduka.database.entity.ProductEntity
+import com.githukudenis.smartduka.domain.model.Product
+import com.githukudenis.smartduka.domain.model.ProductWithInventoryMovements
+import com.githukudenis.smartduka.domain.repository.ProductRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapLatest
+
+class ProductRepositoryImpl(private val productLocalDataSource: ProductLocalDataSource) :
+    ProductRepository {
+    override suspend fun insertProduct(product: Product) {
+        productLocalDataSource.insertProduct(product.toEntity())
+    }
+
+    override suspend fun updateProduct(product: Product) {
+        productLocalDataSource.updateProduct(product.toEntity())
+    }
+
+    override suspend fun archiveProduct(productId: String) {
+        productLocalDataSource.archiveProduct(productId)
+    }
+
+    override suspend fun getProductById(productId: String): Product? {
+        return productLocalDataSource.getProductById(productId)?.toDomain()
+    }
+
+    override fun observeByShop(shopId: String): Flow<List<Product>> {
+        return productLocalDataSource.observeByShop(shopId).mapLatest {
+            it.map(ProductEntity::toDomain)
+        }
+    }
+
+    override fun observeLowStock(shopId: String): Flow<List<Product>> {
+        return productLocalDataSource.observeLowStock(shopId).mapLatest {
+            it.map(ProductEntity::toDomain)
+        }
+    }
+
+    override fun observeProductWithInventoryMovements(productId: String): Flow<ProductWithInventoryMovements> {
+        return productLocalDataSource.observeProductWithInventoryMovements(productId)
+            .mapLatest {
+                it.toDomain()
+            }
+    }
+}
