@@ -15,37 +15,26 @@
 */
 package com.githukudenis.smartduka.data.mapper.mapper
 
-import com.githukudenis.smartduka.database.entity.ProductEntity
-import com.githukudenis.smartduka.domain.model.Product
+import com.githukudenis.smartduka.database.entity.InventoryMovementEntity
+import com.githukudenis.smartduka.domain.model.InventoryMovement
 
-// Maps products from entities to domain objects and vice versa
-fun ProductEntity.toDomain(): Product {
-    return Product(
-        productId,
-        shopId,
-        name,
-        description,
-        price,
-        archived,
-        costPrice,
-        stockQuantity,
-        lowStockThreshold
-    )
+// Maps inventory entities to domain objects and vice versa
+fun InventoryMovementEntity.toDomain(): InventoryMovement {
+    val now: Long = System.currentTimeMillis()
+    return InventoryMovement(movementId, productId, shopId, quantity, date, referenceId, now, type)
 }
 
-fun Product.toEntity(): ProductEntity {
+fun InventoryMovement.toEntity(): InventoryMovementEntity {
     val now: Long = System.currentTimeMillis()
-    return ProductEntity(
+
+    return InventoryMovementEntity(
+        inventoryMovementId,
         productId,
         shopId,
-        name,
-        description,
-        price,
-        archived,
-        costPrice,
-        stockQuantity,
-        lowStockThreshold,
-        now,
+        type,
+        quantity,
+        date,
+        referenceId,
         now
     )
 }
