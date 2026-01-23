@@ -13,12 +13,17 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.githukudenis.smartduka.domain.model
+package com.githukudenis.smartduka.data.mapper.mapper
 
-data class Supplier(
-    val supplierId: String,
-    val shopId: String,
-    val name: String,
-    val contact: String?,
-    val archived: Boolean
-)
+import com.githukudenis.smartduka.database.entity.SupplierEntity
+import com.githukudenis.smartduka.domain.model.Supplier
+
+// Maps supplier entities to domain objects and vice versa
+fun SupplierEntity.toDomain(): Supplier {
+    return Supplier(supplierId, shopId, name, contact, archived)
+}
+
+fun Supplier.toEntity(): SupplierEntity {
+    val now: Long = System.currentTimeMillis()
+    return SupplierEntity(supplierId, shopId, archived, name, contact, now, now)
+}
