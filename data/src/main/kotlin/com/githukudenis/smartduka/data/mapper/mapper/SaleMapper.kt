@@ -17,8 +17,10 @@ package com.githukudenis.smartduka.data.mapper.mapper
 
 import com.githukudenis.smartduka.database.entity.SaleEntity
 import com.githukudenis.smartduka.database.entity.SaleItemEntity
+import com.githukudenis.smartduka.database.relation.SaleWithItemsEntity
 import com.githukudenis.smartduka.domain.model.Sale
 import com.githukudenis.smartduka.domain.model.SaleItem
+import com.githukudenis.smartduka.domain.model.SaleWithItems
 
 // Maps sale and sale item entities
 fun SaleEntity.toDomain(): Sale = Sale(saleId, shopId, date, totalAmount, paymentStatus)
@@ -32,3 +34,11 @@ fun SaleItemEntity.toDomain(): SaleItem =
 
 fun SaleItem.toEntity(): SaleItemEntity =
     SaleItemEntity(saleItemId, saleId, productId, quantity, unitPrice, totalPrice)
+
+fun SaleWithItemsEntity.toDomain(): SaleWithItems {
+    return SaleWithItems(sale.toDomain(), items.map(SaleItemEntity::toDomain))
+}
+
+fun SaleWithItems.toEntity(): SaleWithItemsEntity {
+    return SaleWithItemsEntity(sale.toEntity(), saleItems.map(SaleItem::toEntity))
+}

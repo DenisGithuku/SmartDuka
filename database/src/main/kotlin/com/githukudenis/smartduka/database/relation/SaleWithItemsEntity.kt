@@ -20,7 +20,7 @@ import androidx.room.Relation
 import com.githukudenis.smartduka.database.entity.SaleEntity
 import com.githukudenis.smartduka.database.entity.SaleItemEntity
 
-data class SaleWithItems(
+data class SaleWithItemsEntity(
     @Embedded val sale: SaleEntity,
     @Relation(parentColumn = "sale_id", entityColumn = "sale_id") val items: List<SaleItemEntity>
 )
