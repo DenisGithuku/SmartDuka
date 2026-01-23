@@ -20,7 +20,7 @@ import androidx.room.Relation
 import com.githukudenis.smartduka.database.entity.InventoryMovementEntity
 import com.githukudenis.smartduka.database.entity.ProductEntity
 
-data class ProductWithInventoryMovements(
+data class ProductWithInventoryMovementsEntity(
     @Embedded val product: ProductEntity,
     @Relation(parentColumn = "product_id", entityColumn = "product_id")
     val movements: List<InventoryMovementEntity>
