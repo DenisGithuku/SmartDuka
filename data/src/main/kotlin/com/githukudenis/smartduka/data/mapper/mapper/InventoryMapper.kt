@@ -20,12 +20,10 @@ import com.githukudenis.smartduka.domain.model.InventoryMovement
 
 // Maps inventory entities to domain objects and vice versa
 fun InventoryMovementEntity.toDomain(): InventoryMovement {
-    val now: Long = System.currentTimeMillis()
-    return InventoryMovement(movementId, productId, shopId, quantity, date, referenceId, now, type)
+    return InventoryMovement(movementId, productId, shopId, quantity, date, referenceId, type)
 }
 
 fun InventoryMovement.toEntity(): InventoryMovementEntity {
-    val now: Long = System.currentTimeMillis()
 
     return InventoryMovementEntity(
         inventoryMovementId,
@@ -34,7 +32,6 @@ fun InventoryMovement.toEntity(): InventoryMovementEntity {
         type,
         quantity,
         date,
-        referenceId,
-        now
+        referenceId
     )
 }

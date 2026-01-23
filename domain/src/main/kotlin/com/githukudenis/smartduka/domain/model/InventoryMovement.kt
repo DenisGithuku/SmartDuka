@@ -22,6 +22,6 @@ data class InventoryMovement(
     val quantity: Int,
     val date: Long,
     val referenceId: String?,
-    val createdAt: Long,
+    val createdAt: Long? = null,
     val type: InventoryMovementType
 )

@@ -49,5 +49,5 @@ data class InventoryMovementEntity(
     val quantity: Int,
     val date: Long,
     @ColumnInfo(name = "reference_id") val referenceId: String?,
-    @ColumnInfo(name = "created_at") val createdAt: Long
+    @ColumnInfo(name = "created_at") val createdAt: Long? = null
 )
