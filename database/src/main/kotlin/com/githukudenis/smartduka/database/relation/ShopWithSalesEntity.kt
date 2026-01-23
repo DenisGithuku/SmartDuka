@@ -17,10 +17,10 @@ package com.githukudenis.smartduka.database.relation
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import com.githukudenis.smartduka.database.entity.ProductEntity
+import com.githukudenis.smartduka.database.entity.SaleEntity
 import com.githukudenis.smartduka.database.entity.ShopEntity
 
-data class ShopWithProducts(
+data class ShopWithSalesEntity(
     @Embedded val shop: ShopEntity,
-    @Relation(parentColumn = "shop_id", entityColumn = "shop_id") val products: List<ProductEntity>
+    @Relation(parentColumn = "shop_id", entityColumn = "shop_id") val sales: List<SaleEntity>
 )
