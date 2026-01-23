@@ -25,5 +25,5 @@ fun SupplierEntity.toDomain(): Supplier {
 
 fun Supplier.toEntity(): SupplierEntity {
     val now: Long = System.currentTimeMillis()
-    return SupplierEntity(supplierId, shopId, archived, name, contact, now, now)
+    return SupplierEntity(supplierId, shopId, archived, name, contact)
 }

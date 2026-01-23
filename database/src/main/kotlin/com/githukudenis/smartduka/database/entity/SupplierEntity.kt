@@ -40,6 +40,6 @@ data class SupplierEntity(
     val archived: Boolean,
     val name: String,
     val contact: String?,
-    @ColumnInfo(name = "created_at") override val createdAt: Long,
-    @ColumnInfo(name = "updated_at") override val updatedAt: Long?
+    @ColumnInfo(name = "created_at") override val createdAt: Long? = null,
+    @ColumnInfo(name = "updated_at") override val updatedAt: Long? = null
 ) : Auditable
