@@ -16,7 +16,6 @@
 package com.githukudenis.smartduka.database
 
 import com.githukudenis.smartduka.database.entity.InventoryMovementEntity
-import com.githukudenis.smartduka.database.entity.PaymentStatus
 import com.githukudenis.smartduka.database.entity.ProductEntity
 import com.githukudenis.smartduka.database.entity.SaleEntity
 import com.githukudenis.smartduka.database.entity.SaleItemEntity
@@ -24,6 +23,7 @@ import com.githukudenis.smartduka.database.entity.ShopEntity
 import com.githukudenis.smartduka.database.entity.SupplierEntity
 import com.githukudenis.smartduka.database.entity.UserEntity
 import com.githukudenis.smartduka.domain.model.InventoryMovementType
+import com.githukudenis.smartduka.domain.model.PaymentStatus
 import java.util.UUID
 
 object TestDataFactory {

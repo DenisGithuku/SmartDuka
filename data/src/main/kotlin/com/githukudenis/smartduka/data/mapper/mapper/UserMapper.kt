@@ -19,11 +19,9 @@ import com.githukudenis.smartduka.database.entity.UserEntity
 import com.githukudenis.smartduka.domain.model.User
 
 fun UserEntity.toDomain(): User {
-    return User(userId, name, email, archived)
+    return User(userId, name, archived)
 }
 
 fun User.toEntity(): UserEntity {
-    val now: Long = System.currentTimeMillis()
-
-    return UserEntity(userId, name, email, archived, now, now)
+    return UserEntity(userId, name, archived)
 }

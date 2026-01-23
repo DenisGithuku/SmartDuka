@@ -24,8 +24,7 @@ import com.githukudenis.smartduka.domain.model.SaleItem
 fun SaleEntity.toDomain(): Sale = Sale(saleId, shopId, date, totalAmount, paymentStatus)
 
 fun Sale.toEntity(): SaleEntity {
-    val now: Long = System.currentTimeMillis()
-    return SaleEntity(saleId, shopId, date, total, paymentStatus, now, now)
+    return SaleEntity(saleId, shopId, date, total, paymentStatus)
 }
 
 fun SaleItemEntity.toDomain(): SaleItem =
