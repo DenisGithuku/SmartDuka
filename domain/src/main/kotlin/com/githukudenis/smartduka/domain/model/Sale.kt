@@ -20,8 +20,5 @@ data class Sale(
     val shopId: String,
     val date: Long,
     val total: Double,
-    val totalAmount: Double,
-    val paymentStatus: PaymentStatus,
-    val createdAt: Long,
-    val updatedAt: Long?
+    val paymentStatus: PaymentStatus
 )
