@@ -44,6 +44,6 @@ data class ProductEntity(
     @ColumnInfo(name = "cost_price") val costPrice: Double?,
     @ColumnInfo(name = "stock_quantity") val stockQuantity: Int,
     @ColumnInfo(name = "low_stock_threshold") val lowStockThreshold: Int,
-    @ColumnInfo(name = "created_at") override val createdAt: Long,
-    @ColumnInfo(name = "updated_at") override val updatedAt: Long?
+    @ColumnInfo(name = "created_at") override val createdAt: Long? = null,
+    @ColumnInfo(name = "updated_at") override val updatedAt: Long? = null
 ) : Auditable

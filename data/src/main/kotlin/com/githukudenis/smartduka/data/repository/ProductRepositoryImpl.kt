@@ -29,11 +29,15 @@ import kotlinx.coroutines.flow.mapLatest
 class ProductRepositoryImpl(private val productLocalDataSource: ProductLocalDataSource) :
     ProductRepository {
     override suspend fun insertProduct(product: Product) {
-        productLocalDataSource.insertProduct(product.toEntity())
+        val now: Long = System.currentTimeMillis()
+        val dbProduct = product.toEntity().copy(createdAt = now, updatedAt = now)
+        productLocalDataSource.insertProduct(dbProduct)
     }
 
     override suspend fun updateProduct(product: Product) {
-        productLocalDataSource.updateProduct(product.toEntity())
+        val now: Long = System.currentTimeMillis()
+        val dbProduct = product.toEntity().copy(createdAt = now, updatedAt = now)
+        productLocalDataSource.updateProduct(dbProduct)
     }
 
     override suspend fun archiveProduct(productId: String) {

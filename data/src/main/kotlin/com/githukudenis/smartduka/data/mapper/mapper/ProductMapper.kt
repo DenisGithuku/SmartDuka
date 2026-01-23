@@ -38,7 +38,6 @@ fun ProductEntity.toDomain(): Product {
 }
 
 fun Product.toEntity(): ProductEntity {
-    val now: Long = System.currentTimeMillis()
     return ProductEntity(
         productId,
         shopId,
@@ -48,9 +47,7 @@ fun Product.toEntity(): ProductEntity {
         archived,
         costPrice,
         stockQuantity,
-        lowStockThreshold,
-        now,
-        now
+        lowStockThreshold
     )
 }
 

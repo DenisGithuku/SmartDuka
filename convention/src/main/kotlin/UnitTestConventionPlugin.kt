@@ -40,6 +40,9 @@ class UnitTestConventionPlugin : Plugin<Project> {
                         testImplementation(libs.findLibrary("core-android-test").get())
                         // core-testing (LiveData, ViewModel)
 
+                        // Mockk
+                        testImplementation(libs.findLibrary("mockk").get())
+
                         // Flow testing
                         testImplementation(libs.findLibrary("turbine").get())
                         // For testing Kotlin Flows

@@ -15,6 +15,7 @@ core-ktx = "1.13.1"
 junit = "4.13.2"
 junit-version = "1.2.1"
 truth = "1.6.0"
+mockk="1.13.10"
 activity-compose = "1.10.0"
 appcompat = "1.7.0"
 compose-bom = "2025.02.00"
@@ -107,6 +108,7 @@ firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics
 firebase-performance = { group = "com.google.firebase", name = "firebase-perf"}
 google_play_services = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "google-play-services" }
 play-services-auth-v2120 = { module = "com.google.android.gms:play-services-auth", version.ref = "play-services-auth" }
+mockk = { group = "io.mockk", name ="mockk-android",  version.ref = "mockk" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations" }
