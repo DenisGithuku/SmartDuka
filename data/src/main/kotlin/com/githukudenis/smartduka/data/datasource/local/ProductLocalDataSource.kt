@@ -34,7 +34,9 @@ interface ProductLocalDataSource {
 
     fun observeLowStock(shopId: String): Flow<List<ProductEntity>>
 
-    fun observeProductWithInventoryMovements(productId: String): Flow<ProductWithInventoryMovementsEntity>
+    fun observeProductWithInventoryMovements(
+        productId: String
+    ): Flow<ProductWithInventoryMovementsEntity>
 }
 
 class ProductLocalDataSourceImpl(private val productDao: ProductDao) : ProductLocalDataSource {

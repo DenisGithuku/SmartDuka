@@ -47,5 +47,7 @@ interface ProductDao {
 
     @Transaction
     @Query("SELECT * FROM products WHERE product_id = :productId")
-    fun observeProductWithInventoryMovements(productId: String): Flow<ProductWithInventoryMovementsEntity>
+    fun observeProductWithInventoryMovements(
+        productId: String
+    ): Flow<ProductWithInventoryMovementsEntity>
 }

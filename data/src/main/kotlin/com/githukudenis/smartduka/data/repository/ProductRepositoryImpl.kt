@@ -23,7 +23,6 @@ import com.githukudenis.smartduka.domain.model.Product
 import com.githukudenis.smartduka.domain.model.ProductWithInventoryMovements
 import com.githukudenis.smartduka.domain.repository.ProductRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 
@@ -57,10 +56,11 @@ class ProductRepositoryImpl(private val productLocalDataSource: ProductLocalData
         }
     }
 
-    override fun observeProductWithInventoryMovements(productId: String): Flow<ProductWithInventoryMovements> {
-        return productLocalDataSource.observeProductWithInventoryMovements(productId)
-            .mapLatest {
-                it.toDomain()
-            }
+    override fun observeProductWithInventoryMovements(
+        productId: String
+    ): Flow<ProductWithInventoryMovements> {
+        return productLocalDataSource.observeProductWithInventoryMovements(productId).mapLatest {
+            it.toDomain()
+        }
     }
 }

@@ -55,9 +55,15 @@ fun Product.toEntity(): ProductEntity {
 }
 
 fun ProductWithInventoryMovementsEntity.toDomain(): ProductWithInventoryMovements {
-    return ProductWithInventoryMovements(product.toDomain(), movements.map(InventoryMovementEntity::toDomain))
+    return ProductWithInventoryMovements(
+        product.toDomain(),
+        movements.map(InventoryMovementEntity::toDomain)
+    )
 }
 
 fun ProductWithInventoryMovements.toEntity(): ProductWithInventoryMovementsEntity {
-    return ProductWithInventoryMovementsEntity(product.toEntity(), inventoryMovements.map(InventoryMovement::toEntity))
+    return ProductWithInventoryMovementsEntity(
+        product.toEntity(),
+        inventoryMovements.map(InventoryMovement::toEntity)
+    )
 }
