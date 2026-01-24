@@ -29,7 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.githukudenis.smartduka.designsystem.ui.SmartDukaAppTheme
-import com.google.firebase.BuildConfig
+import com.githukudenis.smartduka.ui.BasicScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             SmartDukaAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    GettingStarted(text = BuildConfig.VERSION_NAME, modifier = Modifier.padding(innerPadding))
+                    BasicScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
