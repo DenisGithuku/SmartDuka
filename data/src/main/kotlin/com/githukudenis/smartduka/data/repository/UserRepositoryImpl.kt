@@ -15,4 +15,34 @@
 */
 package com.githukudenis.smartduka.data.repository
 
-// Will contain UserRepository implementation
+import com.githukudenis.smartduka.data.datasource.local.UserLocalDataSource
+import com.githukudenis.smartduka.data.mapper.mapper.toDomain
+import com.githukudenis.smartduka.data.mapper.mapper.toEntity
+import com.githukudenis.smartduka.domain.model.User
+import com.githukudenis.smartduka.domain.model.UserWithShops
+import com.githukudenis.smartduka.domain.repository.UserRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.mapLatest
+
+class UserRepositoryImpl(private val userLocalDataSource: UserLocalDataSource) : UserRepository {
+
+    override suspend fun insertUser(user: User) {
+        val now = System.currentTimeMillis()
+        val dbUser = user.toEntity().copy(createdAt = now, updatedAt = now)
+        userLocalDataSource.insertUser(dbUser)
+    }
+
+    override suspend fun updateProfile(user: User) {
+        val now = System.currentTimeMillis()
+        val dbUser = user.toEntity().copy(updatedAt = now)
+        userLocalDataSource.updateUser(dbUser)
+    }
+
+    override suspend fun getUserById(userId: String): User? {
+        return userLocalDataSource.getUserById(userId)?.toDomain()
+    }
+
+    override fun observeUserWithShops(userId: String): Flow<UserWithShops> {
+        return userLocalDataSource.observeUserWithShops(userId).mapLatest { it.toDomain() }
+    }
+}

@@ -13,18 +13,6 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.githukudenis.smartduka.domain.repository
+package com.githukudenis.smartduka.domain.model
 
-import com.githukudenis.smartduka.domain.model.User
-import com.githukudenis.smartduka.domain.model.UserWithShops
-import kotlinx.coroutines.flow.Flow
-
-interface UserRepository {
-    suspend fun insertUser(user: User)
-
-    suspend fun updateProfile(user: User)
-
-    suspend fun getUserById(userId: String): User?
-
-    fun observeUserWithShops(userId: String): Flow<UserWithShops>
-}
+data class UserWithShops(val user: User, val shops: List<Shop>)

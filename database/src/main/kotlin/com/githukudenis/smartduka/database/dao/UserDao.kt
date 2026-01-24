@@ -21,7 +21,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import com.githukudenis.smartduka.database.entity.UserEntity
-import com.githukudenis.smartduka.database.relation.UserWithShops
+import com.githukudenis.smartduka.database.relation.UserWithShopsEntity
 import kotlinx.coroutines.flow.Flow
 
 // User operations manage metadata only.
@@ -44,5 +44,5 @@ interface UserDao {
 
     @Transaction
     @Query("SELECT * FROM users WHERE user_id = :userId")
-    fun observeUserWithShops(userId: String): Flow<UserWithShops>
+    fun observeUserWithShops(userId: String): Flow<UserWithShopsEntity>
 }

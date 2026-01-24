@@ -16,7 +16,9 @@
 package com.githukudenis.smartduka.data.mapper.mapper
 
 import com.githukudenis.smartduka.database.entity.UserEntity
+import com.githukudenis.smartduka.database.relation.UserWithShopsEntity
 import com.githukudenis.smartduka.domain.model.User
+import com.githukudenis.smartduka.domain.model.UserWithShops
 
 fun UserEntity.toDomain(): User {
     return User(userId, name, archived)
@@ -24,4 +26,12 @@ fun UserEntity.toDomain(): User {
 
 fun User.toEntity(): UserEntity {
     return UserEntity(userId, name, archived)
+}
+
+fun UserWithShopsEntity.toDomain(): UserWithShops {
+    return UserWithShops(user.toDomain(), shops.map { it.toDomain() })
+}
+
+fun UserWithShops.toEntity(): UserWithShopsEntity {
+    return UserWithShopsEntity(user.toEntity(), shops.map { it.toEntity() })
 }
