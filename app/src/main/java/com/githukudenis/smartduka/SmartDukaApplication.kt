@@ -59,12 +59,7 @@ private class CrashlyticsTree : Timber.Tree() {
     private val crashlytics: FirebaseCrashlytics by lazy { FirebaseCrashlytics.getInstance() }
 
     override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
-        if (priority === Log.VERBOSE || priority === Log.DEBUG || priority === Log.INFO) {
-            return
-        }
-
-        if (BuildConfig.DEBUG) {
-            crashlytics.isCrashlyticsCollectionEnabled = false
+        if (priority == Log.VERBOSE || priority == Log.DEBUG || priority == Log.INFO) {
             return
         }
 
