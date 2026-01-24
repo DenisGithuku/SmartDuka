@@ -21,9 +21,9 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import com.githukudenis.smartduka.database.entity.ShopEntity
-import com.githukudenis.smartduka.database.relation.ShopWithProducts
-import com.githukudenis.smartduka.database.relation.ShopWithSales
-import com.githukudenis.smartduka.database.relation.ShopWithSuppliers
+import com.githukudenis.smartduka.database.relation.ShopWithProductsEntity
+import com.githukudenis.smartduka.database.relation.ShopWithSalesEntity
+import com.githukudenis.smartduka.database.relation.ShopWithSuppliersEntity
 import kotlinx.coroutines.flow.Flow
 
 // Shop operations manage shop lifecycle and metadata.
@@ -46,13 +46,13 @@ interface ShopDao {
 
     @Transaction
     @Query("SELECT * FROM shops WHERE shop_id = :shopId")
-    fun observeShopWithProducts(shopId: String): Flow<ShopWithProducts>
+    fun observeShopWithProducts(shopId: String): Flow<ShopWithProductsEntity>
 
     @Transaction
     @Query("SELECT * FROM shops WHERE shop_id = :shopId")
-    fun observeShopWithSales(shopId: String): Flow<ShopWithSales>
+    fun observeShopWithSales(shopId: String): Flow<ShopWithSalesEntity>
 
     @Transaction
     @Query("SELECT * FROM shops WHERE shop_id = :shopId")
-    fun observeShopWithSuppliers(shopId: String): Flow<ShopWithSuppliers>
+    fun observeShopWithSuppliers(shopId: String): Flow<ShopWithSuppliersEntity>
 }

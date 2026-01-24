@@ -17,9 +17,9 @@ package com.githukudenis.smartduka.data.datasource.local
 
 import com.githukudenis.smartduka.database.dao.ShopDao
 import com.githukudenis.smartduka.database.entity.ShopEntity
-import com.githukudenis.smartduka.database.relation.ShopWithProducts
-import com.githukudenis.smartduka.database.relation.ShopWithSales
-import com.githukudenis.smartduka.database.relation.ShopWithSuppliers
+import com.githukudenis.smartduka.database.relation.ShopWithProductsEntity
+import com.githukudenis.smartduka.database.relation.ShopWithSalesEntity
+import com.githukudenis.smartduka.database.relation.ShopWithSuppliersEntity
 import kotlinx.coroutines.flow.Flow
 
 // Local datasource for shop data
@@ -32,11 +32,11 @@ interface ShopLocalDataSource {
 
     fun observeShopsByUser(userId: String): Flow<List<ShopEntity>>
 
-    fun observeShopWithProducts(shopId: String): Flow<ShopWithProducts>
+    fun observeShopWithProducts(shopId: String): Flow<ShopWithProductsEntity>
 
-    fun observeShopWithSales(shopId: String): Flow<ShopWithSales>
+    fun observeShopWithSales(shopId: String): Flow<ShopWithSalesEntity>
 
-    fun observeShopWithSuppliers(shopId: String): Flow<ShopWithSuppliers>
+    fun observeShopWithSuppliers(shopId: String): Flow<ShopWithSuppliersEntity>
 }
 
 class ShopLocalDataSourceImpl(private val shopDao: ShopDao) : ShopLocalDataSource {
@@ -56,15 +56,15 @@ class ShopLocalDataSourceImpl(private val shopDao: ShopDao) : ShopLocalDataSourc
         return shopDao.observeByUser(userId)
     }
 
-    override fun observeShopWithProducts(shopId: String): Flow<ShopWithProducts> {
+    override fun observeShopWithProducts(shopId: String): Flow<ShopWithProductsEntity> {
         return shopDao.observeShopWithProducts(shopId)
     }
 
-    override fun observeShopWithSales(shopId: String): Flow<ShopWithSales> {
+    override fun observeShopWithSales(shopId: String): Flow<ShopWithSalesEntity> {
         return shopDao.observeShopWithSales(shopId)
     }
 
-    override fun observeShopWithSuppliers(shopId: String): Flow<ShopWithSuppliers> {
+    override fun observeShopWithSuppliers(shopId: String): Flow<ShopWithSuppliersEntity> {
         return shopDao.observeShopWithSuppliers(shopId)
     }
 }
