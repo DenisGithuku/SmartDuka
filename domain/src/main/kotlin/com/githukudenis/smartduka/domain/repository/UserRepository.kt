@@ -16,9 +16,14 @@
 package com.githukudenis.smartduka.domain.repository
 
 import com.githukudenis.smartduka.domain.model.User
+import com.githukudenis.smartduka.domain.model.UserWithShops
+import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
+    suspend fun insertUser(user: User)
     suspend fun updateProfile(user: User)
 
     suspend fun getUserById(userId: String)
+
+    fun observeUserWithShops(userId: String): Flow<UserWithShops>
 }

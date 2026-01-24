@@ -20,7 +20,7 @@ import androidx.room.Relation
 import com.githukudenis.smartduka.database.entity.ShopEntity
 import com.githukudenis.smartduka.database.entity.UserEntity
 
-data class UserWithShops(
+data class UserWithShopsEntity(
     @Embedded val user: UserEntity,
     @Relation(parentColumn = "user_id", entityColumn = "user_id") val shops: List<ShopEntity>
 )

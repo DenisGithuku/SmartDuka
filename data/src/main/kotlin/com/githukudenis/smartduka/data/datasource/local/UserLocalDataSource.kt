@@ -17,7 +17,7 @@ package com.githukudenis.smartduka.data.datasource.local
 
 import com.githukudenis.smartduka.database.dao.UserDao
 import com.githukudenis.smartduka.database.entity.UserEntity
-import com.githukudenis.smartduka.database.relation.UserWithShops
+import com.githukudenis.smartduka.database.relation.UserWithShopsEntity
 import kotlinx.coroutines.flow.Flow
 
 // Local datasource for user data
@@ -30,7 +30,7 @@ interface UserLocalDataSource {
 
     suspend fun getUserById(userId: String): UserEntity?
 
-    fun observeUserWithShops(userId: String): Flow<UserWithShops>
+    fun observeUserWithShops(userId: String): Flow<UserWithShopsEntity>
 }
 
 class UserLocalDataSourceImpl(private val userDao: UserDao) : UserLocalDataSource {
@@ -50,7 +50,7 @@ class UserLocalDataSourceImpl(private val userDao: UserDao) : UserLocalDataSourc
         return userDao.getById(userId)
     }
 
-    override fun observeUserWithShops(userId: String): Flow<UserWithShops> {
+    override fun observeUserWithShops(userId: String): Flow<UserWithShopsEntity> {
         return userDao.observeUserWithShops(userId)
     }
 }
