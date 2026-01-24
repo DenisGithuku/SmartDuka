@@ -36,7 +36,7 @@ class SaleRepositoryImpl(private val saleLocalDataSource: SaleLocalDataSource) :
 
     override suspend fun updateSale(sale: Sale) {
         val now: Long = System.currentTimeMillis()
-        val dbSale = sale.toEntity().copy(createdAt = now, updatedAt = now)
+        val dbSale = sale.toEntity().copy(updatedAt = now)
         saleLocalDataSource.updateSale(dbSale)
     }
 

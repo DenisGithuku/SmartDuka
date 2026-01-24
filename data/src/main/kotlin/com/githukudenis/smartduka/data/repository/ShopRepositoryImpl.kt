@@ -35,7 +35,7 @@ class ShopRepositoryImpl(private val shopLocalDataSource: ShopLocalDataSource) :
 
     override suspend fun updateShop(shop: Shop) {
         val now: Long = System.currentTimeMillis()
-        val dbShop = shop.toEntity().copy(createdAt = now, updatedAt = now)
+        val dbShop = shop.toEntity().copy(updatedAt = now)
         shopLocalDataSource.updateShop(dbShop)
     }
 

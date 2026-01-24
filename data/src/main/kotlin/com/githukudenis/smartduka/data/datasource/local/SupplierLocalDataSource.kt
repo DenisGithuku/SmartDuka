@@ -29,7 +29,7 @@ interface SupplierLocalDataSource {
 
     suspend fun getSupplierById(supplierId: String): SupplierEntity?
 
-    suspend fun observeSuppliersByShop(shopId: String): Flow<List<SupplierEntity>>
+    fun observeSuppliersByShop(shopId: String): Flow<List<SupplierEntity>>
 }
 
 class SupplierLocalDataSourceImpl(private val supplierDao: SupplierDao) : SupplierLocalDataSource {
@@ -49,7 +49,7 @@ class SupplierLocalDataSourceImpl(private val supplierDao: SupplierDao) : Suppli
         return supplierDao.getById(supplierId)
     }
 
-    override suspend fun observeSuppliersByShop(shopId: String): Flow<List<SupplierEntity>> {
+    override fun observeSuppliersByShop(shopId: String): Flow<List<SupplierEntity>> {
         return supplierDao.observeByShop(shopId)
     }
 }
