@@ -36,7 +36,7 @@ class ProductRepositoryImpl(private val productLocalDataSource: ProductLocalData
 
     override suspend fun updateProduct(product: Product) {
         val now: Long = System.currentTimeMillis()
-        val dbProduct = product.toEntity().copy(createdAt = now, updatedAt = now)
+        val dbProduct = product.toEntity().copy(updatedAt = now)
         productLocalDataSource.updateProduct(dbProduct)
     }
 
