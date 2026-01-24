@@ -24,7 +24,7 @@ import com.githukudenis.smartduka.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.mapLatest
 
-class UserRepositoryImpl (private val userLocalDataSource: UserLocalDataSource): UserRepository {
+class UserRepositoryImpl(private val userLocalDataSource: UserLocalDataSource) : UserRepository {
 
     override suspend fun insertUser(user: User) {
         val now = System.currentTimeMillis()
@@ -38,8 +38,8 @@ class UserRepositoryImpl (private val userLocalDataSource: UserLocalDataSource):
         userLocalDataSource.updateUser(dbUser)
     }
 
-    override suspend fun getUserById(userId: String) {
-        userLocalDataSource.getUserById(userId)
+    override suspend fun getUserById(userId: String): User? {
+        return userLocalDataSource.getUserById(userId)?.toDomain()
     }
 
     override fun observeUserWithShops(userId: String): Flow<UserWithShops> {
