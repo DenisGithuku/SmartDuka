@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="navigate_back">Navigate Back</string>
+    <string name="home">Home</string>
+    <string name="products">Products</string>
+    <string name="sales">Sales</string>
+    <string name="new_sale">New sale</string>
+    <string name="settings">Settings</string>
 </resources>

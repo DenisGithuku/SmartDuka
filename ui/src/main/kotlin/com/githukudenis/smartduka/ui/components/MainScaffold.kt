@@ -13,7 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.githukudenis.smartduka
+package com.githukudenis.smartduka.ui.components
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -37,11 +37,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.githukudenis.smartduka.ui.R
+import com.githukudenis.smartduka.ui.navigation.AppState
+import com.githukudenis.smartduka.ui.navigation.getScreenUiState
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun MainScaffold(
     modifier: Modifier = Modifier,
+    appState: AppState,
     @StringRes title: Int? = null,
     onNavigateBack: () -> Unit = {},
     floatingActionButton: @Composable () -> Unit = {},
@@ -54,6 +57,9 @@ fun MainScaffold(
         ),
     content: @Composable (PaddingValues) -> Unit
 ) {
+    val currentRoute = appState.currentDestination?.route
+    val screenUiState = getScreenUiState(currentRoute)
+
     Scaffold(
         modifier = modifier,
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
@@ -61,19 +67,21 @@ fun MainScaffold(
             CenterAlignedTopAppBar(
                 title = { title?.let { Text(text = stringResource(id = title)) } },
                 navigationIcon = {
-                    IconButton(onClick = onNavigateBack) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_arrow_left),
-                            contentDescription = stringResource(R.string.navigate_back)
-                        )
+                    if (screenUiState.showNavIcon) {
+                        IconButton(onClick = onNavigateBack) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_arrow_left),
+                                contentDescription = stringResource(R.string.navigate_back)
+                            )
+                        }
                     }
                 },
                 actions = actions,
                 colors = appBarColors
             )
         },
-        floatingActionButton = floatingActionButton,
-        bottomBar = bottomBar,
+        floatingActionButton = { if (screenUiState.showFab) floatingActionButton },
+        bottomBar = { if (screenUiState.showBottomBar) bottomBar },
         contentWindowInsets = WindowInsets.imeAnimationTarget
     ) { innerPadding ->
         content(innerPadding)
