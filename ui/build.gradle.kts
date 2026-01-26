@@ -8,4 +8,7 @@ plugins {
 
 android { namespace = "com.githukudenis.smartduka.ui" }
 
-dependencies { implementation(project(AndroidModules.DesignSystem)) }
+dependencies {
+    implementation(project(AndroidModules.DesignSystem))
+    implementation(project(AndroidModules.Domain))
+}
