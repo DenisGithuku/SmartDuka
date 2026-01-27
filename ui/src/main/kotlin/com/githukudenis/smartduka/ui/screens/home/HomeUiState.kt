@@ -16,13 +16,19 @@
 package com.githukudenis.smartduka.ui.screens.home
 
 import com.githukudenis.smartduka.domain.model.Product
-import com.githukudenis.smartduka.domain.model.Sale
 
 data class HomeUiState(
     val isLoading: Boolean = false,
-    val products: List<Product> = emptyList(),
-    val todaySales: List<Sale> = emptyList(),
-    val weeklySales: List<Sale> = emptyList(),
+    val todayTotalSales: Double? = null,
+    val weeklyTotalSales: Double? = null,
+    val recentSales: List<RecentSale> = emptyList(),
     val lowStockProducts: List<Product> = emptyList(),
     val error: String? = null
+)
+
+data class RecentSale(
+    val saleId: String,
+    val productName: String,
+    val amount: Double,
+    val timestamp: Long
 )
