@@ -51,7 +51,7 @@ fun MainNavGraph(modifier: Modifier = Modifier, appState: AppState) {
                 }
             ) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-//                    Text(text = "Home")
+                    //                    Text(text = "Home")
                     HomeScreen()
                 }
             }
