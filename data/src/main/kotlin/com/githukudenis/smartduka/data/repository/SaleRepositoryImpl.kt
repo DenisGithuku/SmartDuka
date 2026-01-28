@@ -58,6 +58,12 @@ class SaleRepositoryImpl(private val saleLocalDataSource: SaleLocalDataSource) :
         return saleLocalDataSource.observeSaleWithItems(saleId).mapLatest { it.toDomain() }
     }
 
+    override fun getSalesBetween(start: Long, end: Long): Flow<List<Sale>> {
+        return saleLocalDataSource.getSalesBetween(start, end).mapLatest {
+            it.map(SaleEntity::toDomain)
+        }
+    }
+
     override suspend fun insertSaleItems(items: List<SaleItem>) {
         saleLocalDataSource.insertSaleItems(items.map(SaleItem::toEntity))
     }

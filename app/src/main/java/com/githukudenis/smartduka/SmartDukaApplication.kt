@@ -17,6 +17,8 @@ package com.githukudenis.smartduka
 
 import android.app.Application
 import android.util.Log
+import com.githukudenis.smartduka.data.dataModule
+import com.githukudenis.smartduka.database.databaseModule
 import com.githukudenis.smartduka.ui.uiModule
 import com.google.firebase.crashlytics.BuildConfig
 import com.google.firebase.crashlytics.FirebaseCrashlytics
@@ -51,7 +53,7 @@ class SmartDukaApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@SmartDukaApplication)
-            modules(appModule, uiModule)
+            modules(appModule, uiModule, dataModule, databaseModule)
         }
     }
 }

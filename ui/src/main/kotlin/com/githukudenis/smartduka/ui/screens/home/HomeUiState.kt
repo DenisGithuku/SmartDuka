@@ -13,10 +13,22 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.githukudenis.smartduka.ui
+package com.githukudenis.smartduka.ui.screens.home
 
-import com.githukudenis.smartduka.ui.screens.home.HomeViewModel
-import org.koin.core.module.dsl.viewModel
-import org.koin.dsl.module
+import com.githukudenis.smartduka.domain.model.Product
 
-val uiModule = module { viewModel<HomeViewModel> { HomeViewModel(get(), get(), get()) } }
+data class HomeUiState(
+    val isLoading: Boolean = false,
+    val todayTotalSales: Double? = null,
+    val weeklyTotalSales: Double? = null,
+    val recentSales: List<RecentSale> = emptyList(),
+    val lowStockProducts: List<Product> = emptyList(),
+    val error: String? = null
+)
+
+data class RecentSale(
+    val saleId: String,
+    val productName: String,
+    val amount: Double,
+    val timestamp: Long
+)

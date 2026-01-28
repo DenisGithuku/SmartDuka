@@ -37,6 +37,8 @@ interface SaleLocalDataSource {
 
     fun observeSaleWithItems(saleId: String): Flow<SaleWithItemsEntity>
 
+    fun getSalesBetween(start: Long, end: Long): Flow<List<SaleEntity>>
+
     suspend fun insertSaleItems(items: List<SaleItemEntity>)
 
     suspend fun removeSaleItem(saleId: String, productId: String)
@@ -67,6 +69,10 @@ class SalesLocalDataSourceImpl(private val saleDao: SaleDao, private val saleIte
 
     override fun observeSaleWithItems(saleId: String): Flow<SaleWithItemsEntity> =
         saleDao.observeSaleWithItems(saleId)
+
+    override fun getSalesBetween(start: Long, end: Long): Flow<List<SaleEntity>> {
+        return saleDao.getSalesBetween(start, end)
+    }
 
     override suspend fun insertSaleItems(items: List<SaleItemEntity>) {
         saleItemDao.insertSaleItems(items)

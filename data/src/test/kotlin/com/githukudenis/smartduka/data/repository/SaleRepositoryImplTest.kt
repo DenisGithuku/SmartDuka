@@ -154,98 +154,122 @@ class SaleRepositoryImplTest {
         }
     }
 
-    // ---------------- Insert Sale Items ----------------
-
     @Test
-    fun `insertSaleItems maps items to entities`() = runTest {
-        val items = listOf(TestDataFactory.saleItem(), TestDataFactory.saleItem())
+    fun `getSalesBetween maps entities to domain`() = runTest {
+        val entities =
+            listOf(
+                TestDataFactory.saleEntity("1").copy(date = 1L),
+                TestDataFactory.saleEntity("2").copy(date = 2L)
+            )
+        val start = 1L
+        val end = 3L
 
-        coEvery { saleLocalDataSource.insertSaleItems(any()) } just Runs
+        val flow = flowOf(entities)
 
-        repository.insertSaleItems(items)
+        every { saleLocalDataSource.getSalesBetween(start, end) } returns flow
 
-        coVerify { saleLocalDataSource.insertSaleItems(match { it.size == items.size }) }
+        repository.getSalesBetween(start, end).test {
+            val result = awaitItem()
+
+            assertEquals(2, result.size)
+            assertEquals("1", result[0].saleId)
+
+            cancelAndIgnoreRemainingEvents()
+        }
+
+        // ---------------- Insert Sale Items ----------------
+
+        @Test
+        fun `insertSaleItems maps items to entities`() = runTest {
+            val items = listOf(TestDataFactory.saleItem(), TestDataFactory.saleItem())
+
+            coEvery { saleLocalDataSource.insertSaleItems(any()) } just Runs
+
+            repository.insertSaleItems(items)
+
+            coVerify { saleLocalDataSource.insertSaleItems(match { it.size == items.size }) }
+        }
+
+        // ---------------- Remove Sale Item ----------------
+
+        @Test
+        fun `removeSaleItem delegates to local datasource`() = runTest {
+            coEvery { saleLocalDataSource.removeSaleItem("sale-1", "prod-1") } just Runs
+
+            repository.removeSaleItem("sale-1", "prod-1")
+
+            coVerify { saleLocalDataSource.removeSaleItem("sale-1", "prod-1") }
+        }
+
+        // ---------------- Delete Items For Sale ----------------
+
+        @Test
+        fun `deleteItemsForSale delegates to local datasource`() = runTest {
+            coEvery { saleLocalDataSource.deleteItemsForSale("sale-1") } just Runs
+
+            repository.deleteItemsForSale("sale-1")
+
+            coVerify { saleLocalDataSource.deleteItemsForSale("sale-1") }
+        }
+
+        // ---------------- Get Items For Sale ----------------
+
+        @Test
+        fun `getItemsForSale maps entities to domain`() = runTest {
+            val entities = listOf(TestDataFactory.saleItemEntity(), TestDataFactory.saleItemEntity())
+
+            coEvery { saleLocalDataSource.getItemsForSale("sale-1") } returns entities
+
+            val result = repository.getItemsForSale("sale-1")
+
+            assertEquals(2, result.size)
+            assertEquals(entities[0].saleItemId, result[0].saleItemId)
+        }
     }
 
-    // ---------------- Remove Sale Item ----------------
+    private object TestDataFactory {
 
-    @Test
-    fun `removeSaleItem delegates to local datasource`() = runTest {
-        coEvery { saleLocalDataSource.removeSaleItem("sale-1", "prod-1") } just Runs
+        fun sale(id: String = "sale-1") =
+            Sale(
+                saleId = id,
+                shopId = "shop-1",
+                total = 1000.0,
+                date = System.currentTimeMillis(),
+                paymentStatus = PaymentStatus.PAID
+            )
 
-        repository.removeSaleItem("sale-1", "prod-1")
+        fun saleEntity(id: String = "sale-1") =
+            SaleEntity(
+                saleId = id,
+                shopId = "shop-1",
+                totalAmount = 1000.0,
+                paymentStatus = PaymentStatus.PAID,
+                date = System.currentTimeMillis(),
+                createdAt = 1L,
+                updatedAt = 1L
+            )
 
-        coVerify { saleLocalDataSource.removeSaleItem("sale-1", "prod-1") }
+        fun saleItem() =
+            SaleItem(
+                saleItemId = "item-1",
+                saleId = "sale-1",
+                productId = "prod-1",
+                quantity = 2,
+                unitPrice = 100.0,
+                totalPrice = 200.0
+            )
+
+        fun saleItemEntity() =
+            SaleItemEntity(
+                saleItemId = "item-1",
+                saleId = "sale-1",
+                productId = "prod-1",
+                quantity = 2,
+                unitPrice = 100.0,
+                totalPrice = 200.0
+            )
+
+        fun saleWithItemsEntity() =
+            SaleWithItemsEntity(sale = saleEntity(), items = listOf(saleItemEntity()))
     }
-
-    // ---------------- Delete Items For Sale ----------------
-
-    @Test
-    fun `deleteItemsForSale delegates to local datasource`() = runTest {
-        coEvery { saleLocalDataSource.deleteItemsForSale("sale-1") } just Runs
-
-        repository.deleteItemsForSale("sale-1")
-
-        coVerify { saleLocalDataSource.deleteItemsForSale("sale-1") }
-    }
-
-    // ---------------- Get Items For Sale ----------------
-
-    @Test
-    fun `getItemsForSale maps entities to domain`() = runTest {
-        val entities = listOf(TestDataFactory.saleItemEntity(), TestDataFactory.saleItemEntity())
-
-        coEvery { saleLocalDataSource.getItemsForSale("sale-1") } returns entities
-
-        val result = repository.getItemsForSale("sale-1")
-
-        assertEquals(2, result.size)
-        assertEquals(entities[0].saleItemId, result[0].saleItemId)
-    }
-}
-
-private object TestDataFactory {
-
-    fun sale(id: String = "sale-1") =
-        Sale(
-            saleId = id,
-            shopId = "shop-1",
-            total = 1000.0,
-            date = System.currentTimeMillis(),
-            paymentStatus = PaymentStatus.PAID
-        )
-
-    fun saleEntity(id: String = "sale-1") =
-        SaleEntity(
-            saleId = id,
-            shopId = "shop-1",
-            totalAmount = 1000.0,
-            paymentStatus = PaymentStatus.PAID,
-            date = System.currentTimeMillis(),
-            createdAt = 1L,
-            updatedAt = 1L
-        )
-
-    fun saleItem() =
-        SaleItem(
-            saleItemId = "item-1",
-            saleId = "sale-1",
-            productId = "prod-1",
-            quantity = 2,
-            unitPrice = 100.0,
-            totalPrice = 200.0
-        )
-
-    fun saleItemEntity() =
-        SaleItemEntity(
-            saleItemId = "item-1",
-            saleId = "sale-1",
-            productId = "prod-1",
-            quantity = 2,
-            unitPrice = 100.0,
-            totalPrice = 200.0
-        )
-
-    fun saleWithItemsEntity() =
-        SaleWithItemsEntity(sale = saleEntity(), items = listOf(saleItemEntity()))
 }

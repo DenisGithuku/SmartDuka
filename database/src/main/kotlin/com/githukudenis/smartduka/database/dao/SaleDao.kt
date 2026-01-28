@@ -46,6 +46,9 @@ interface SaleDao {
     @Query("SELECT * FROM sales WHERE shop_id = :shopId ORDER BY date DESC")
     fun observeSalesForShop(shopId: String): Flow<List<SaleEntity>>
 
+    @Query("SELECT * FROM sales WHERE date BETWEEN :start AND :end ORDER BY date DESC")
+    fun getSalesBetween(start: Long, end: Long): Flow<List<SaleEntity>>
+
     // ---------- Relations ----------
 
     @Transaction
