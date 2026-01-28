@@ -38,8 +38,8 @@ class UserRepositoryImpl(private val userLocalDataSource: UserLocalDataSource) :
         userLocalDataSource.updateUser(dbUser)
     }
 
-    override suspend fun getUserById(userId: String): User? {
-        return userLocalDataSource.getUserById(userId)?.toDomain()
+    override suspend fun getUser(): User {
+        return userLocalDataSource.getUser().toDomain()
     }
 
     override fun observeUserWithShops(userId: String): Flow<UserWithShops> {

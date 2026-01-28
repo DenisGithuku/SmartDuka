@@ -24,7 +24,7 @@ interface UserRepository {
 
     suspend fun updateProfile(user: User)
 
-    suspend fun getUserById(userId: String): User?
+    suspend fun getUser(): User
 
     fun observeUserWithShops(userId: String): Flow<UserWithShops>
 }

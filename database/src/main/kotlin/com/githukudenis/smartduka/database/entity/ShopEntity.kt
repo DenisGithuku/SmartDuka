@@ -20,6 +20,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import java.util.UUID
 
 @Entity(
     tableName = "shops",
@@ -35,7 +36,7 @@ import androidx.room.PrimaryKey
     indices = [Index("user_id")]
 )
 data class ShopEntity(
-    @PrimaryKey @ColumnInfo(name = "shop_id") val shopId: String,
+    @PrimaryKey @ColumnInfo(name = "shop_id") val shopId: String = UUID.randomUUID().toString(),
     @ColumnInfo(name = "user_id") val userId: String,
     val archived: Boolean,
     val name: String,

@@ -38,7 +38,6 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
-import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Test
 
@@ -86,40 +85,13 @@ class ShopRepositoryImplTest {
     fun `getShopById returns mapped domain object`() = runTest {
         val entity = TestDataFactory.shopEntity()
 
-        coEvery { shopLocalDataSource.getShopById(entity.shopId) } returns entity
+        coEvery { shopLocalDataSource.getShop() } returns entity
 
-        val result = repository.getShopById(entity.shopId)
+        val result = repository.getShop()
 
         assertNotNull(result)
-        assertEquals(entity.shopId, result!!.shopId)
+        assertEquals(entity.shopId, result.shopId)
         assertEquals(entity.name, result.name)
-    }
-
-    @Test
-    fun `getShopById returns null when not found`() = runTest {
-        coEvery { shopLocalDataSource.getShopById(any()) } returns null
-
-        val result = repository.getShopById("missing")
-
-        assertNull(result)
-    }
-
-    // ---------------- Observe By User ----------------
-
-    @Test
-    fun `observeByUser maps entities to domain`() = runTest {
-        val entities = listOf(TestDataFactory.shopEntity("1"), TestDataFactory.shopEntity("2"))
-
-        every { shopLocalDataSource.observeShopsByUser("user-1") } returns flowOf(entities)
-
-        repository.observeByUser("user-1").test {
-            val result = awaitItem()
-
-            assertEquals(2, result.size)
-            assertEquals("1", result[0].shopId)
-
-            cancelAndIgnoreRemainingEvents()
-        }
     }
 
     // ---------------- Observe With Products ----------------

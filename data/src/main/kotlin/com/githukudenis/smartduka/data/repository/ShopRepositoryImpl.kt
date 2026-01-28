@@ -39,14 +39,8 @@ class ShopRepositoryImpl(private val shopLocalDataSource: ShopLocalDataSource) :
         shopLocalDataSource.updateShop(dbShop)
     }
 
-    override suspend fun getShopById(shopId: String): Shop? {
-        return shopLocalDataSource.getShopById(shopId)?.toDomain()
-    }
-
-    override fun observeByUser(userId: String): Flow<List<Shop>> {
-        return shopLocalDataSource.observeShopsByUser(userId).mapLatest { shopEntities ->
-            shopEntities.map { it.toDomain() }
-        }
+    override suspend fun getShop(): Shop {
+        return shopLocalDataSource.getShop().toDomain()
     }
 
     override fun observeShopWithProducts(shopId: String): Flow<ShopWithProducts> {
