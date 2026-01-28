@@ -38,11 +38,8 @@ interface ShopDao {
     @Query("UPDATE shops SET archived = 1 WHERE shop_id = :shopId")
     suspend fun archive(shopId: String)
 
-    @Query("SELECT * FROM shops WHERE shop_id = :shopId")
-    suspend fun getById(shopId: String): ShopEntity?
-
-    @Query("SELECT * FROM shops WHERE user_id = :userId AND archived = 0 ORDER BY created_at ASC")
-    fun observeByUser(userId: String): Flow<List<ShopEntity>>
+    @Query("SELECT * FROM shops LIMIT 1")
+    suspend fun getShopDetails(): ShopEntity?
 
     @Transaction
     @Query("SELECT * FROM shops WHERE shop_id = :shopId")
