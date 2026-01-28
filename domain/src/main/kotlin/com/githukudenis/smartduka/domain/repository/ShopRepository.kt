@@ -26,9 +26,7 @@ interface ShopRepository {
 
     suspend fun updateShop(shop: Shop)
 
-    suspend fun getShopById(shopId: String): Shop?
-
-    fun observeByUser(userId: String): Flow<List<Shop>>
+    suspend fun getShop(): Shop
 
     fun observeShopWithProducts(shopId: String): Flow<ShopWithProducts>
 

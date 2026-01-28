@@ -28,7 +28,7 @@ interface ShopLocalDataSource {
 
     suspend fun updateShop(shop: ShopEntity)
 
-    suspend fun observeShop(): Flow<ShopEntity>
+    suspend fun getShop(): ShopEntity
 
     fun observeShopWithProducts(shopId: String): Flow<ShopWithProductsEntity>
 
@@ -46,8 +46,8 @@ class ShopLocalDataSourceImpl(private val shopDao: ShopDao) : ShopLocalDataSourc
         shopDao.update(shop)
     }
 
-    override suspend fun observeShop(): Flow<ShopEntity> {
-        return shopDao.observeShop()
+    override suspend fun getShop(): ShopEntity {
+        return shopDao.getShop()
     }
 
     override fun observeShopWithProducts(shopId: String): Flow<ShopWithProductsEntity> {

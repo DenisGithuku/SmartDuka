@@ -34,7 +34,6 @@ import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
@@ -86,12 +85,12 @@ class ShopRepositoryImplTest {
     fun `getShopById returns mapped domain object`() = runTest {
         val entity = TestDataFactory.shopEntity()
 
-        coEvery { shopLocalDataSource.observeShop().first() } returns entity
+        coEvery { shopLocalDataSource.getShop() } returns entity
 
-        val result = repository.getShopById(entity.shopId)
+        val result = repository.getShop()
 
         assertNotNull(result)
-        assertEquals(entity.shopId, result!!.shopId)
+        assertEquals(entity.shopId, result.shopId)
         assertEquals(entity.name, result.name)
     }
 
