@@ -34,14 +34,11 @@ import kotlinx.coroutines.flow.Flow
 interface SaleDao {
     // ---------- Sale ----------
 
-    @Insert
-    suspend fun insertSale(sale: SaleEntity)
+    @Insert suspend fun insertSale(sale: SaleEntity)
 
-    @Update
-    suspend fun updateSale(sale: SaleEntity)
+    @Update suspend fun updateSale(sale: SaleEntity)
 
-    @Query("DELETE FROM sales WHERE sale_id = :saleId")
-    suspend fun deleteSale(saleId: String)
+    @Query("DELETE FROM sales WHERE sale_id = :saleId") suspend fun deleteSale(saleId: String)
 
     @Query("SELECT * FROM sales WHERE sale_id = :saleId")
     suspend fun getSaleById(saleId: String): SaleEntity?
@@ -51,7 +48,6 @@ interface SaleDao {
 
     @Query("SELECT * FROM sales WHERE date BETWEEN :start AND :end ORDER BY date DESC")
     fun getSalesBetween(start: Long, end: Long): Flow<List<SaleEntity>>
-
 
     // ---------- Relations ----------
 

@@ -19,12 +19,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.githukudenis.smartduka.domain.model.Product
 import com.githukudenis.smartduka.domain.model.Sale
-import com.githukudenis.smartduka.domain.model.Shop
-import com.githukudenis.smartduka.domain.model.Supplier
 import com.githukudenis.smartduka.domain.repository.ProductRepository
 import com.githukudenis.smartduka.domain.repository.SaleRepository
 import com.githukudenis.smartduka.domain.repository.ShopRepository
-import com.githukudenis.smartduka.domain.repository.SupplierRepository
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.ZoneId
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -32,9 +32,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
-import java.time.DayOfWeek
-import java.time.LocalDate
-import java.time.ZoneId
 
 class HomeViewModel(
     private val productRepository: ProductRepository,
@@ -54,29 +51,22 @@ class HomeViewModel(
             val shopId = shopRepository.getShop().shopId
 
             combine(
-                productRepository.observeLowStock(shopId),
-                saleRepository.getSalesBetween(
-                    todayRange().first,
-                    todayRange().second
-                ), // today's sales
-                saleRepository.getSalesBetween(
-                    thisWeekRange().first,
-                    thisWeekRange().second
-                ), // this week's sales,
-                saleRepository.observeSalesForShop(shopId),
-            ) { lowStockProducts, todaysSales, thisWeeksSales, recentSales ->
-                buildUiState(
-                    todayTotalSales = todaysSales.sumOf { it.total },
-                    weeklyTotalSales = thisWeeksSales.sumOf { it.total },
-                    lowStockProducts = lowStockProducts,
-                    recentSales = recentSales,
-                )
-            }
-                .shareIn(
-                    scope = viewModelScope,
-                    started = SharingStarted.WhileSubscribed(5000),
-                    replay = 1
-                )
+                    productRepository.observeLowStock(shopId),
+                    saleRepository.getSalesBetween(todayRange().first, todayRange().second), // today's sales
+                    saleRepository.getSalesBetween(
+                        thisWeekRange().first,
+                        thisWeekRange().second
+                    ), // this week's sales,
+                    saleRepository.observeSalesForShop(shopId)
+                ) { lowStockProducts, todaysSales, thisWeeksSales, recentSales ->
+                    buildUiState(
+                        todayTotalSales = todaysSales.sumOf { it.total },
+                        weeklyTotalSales = thisWeeksSales.sumOf { it.total },
+                        lowStockProducts = lowStockProducts,
+                        recentSales = recentSales
+                    )
+                }
+                .shareIn(scope = viewModelScope, started = SharingStarted.WhileSubscribed(5000), replay = 1)
         }
     }
 
@@ -84,16 +74,9 @@ class HomeViewModel(
         val zone = ZoneId.systemDefault()
         val today = LocalDate.now(zone)
 
-        val start = today
-            .atStartOfDay(zone)
-            .toInstant()
-            .toEpochMilli()
+        val start = today.atStartOfDay(zone).toInstant().toEpochMilli()
 
-        val end = today
-            .plusDays(1)
-            .atStartOfDay(zone)
-            .toInstant()
-            .toEpochMilli()
+        val end = today.plusDays(1).atStartOfDay(zone).toInstant().toEpochMilli()
 
         return start to end
     }
@@ -104,20 +87,12 @@ class HomeViewModel(
 
         val startOfWeek = today.with(DayOfWeek.MONDAY)
 
-        val start = startOfWeek
-            .atStartOfDay(zone)
-            .toInstant()
-            .toEpochMilli()
+        val start = startOfWeek.atStartOfDay(zone).toInstant().toEpochMilli()
 
-        val end = startOfWeek
-            .plusWeeks(1)
-            .atStartOfDay(zone)
-            .toInstant()
-            .toEpochMilli()
+        val end = startOfWeek.plusWeeks(1).atStartOfDay(zone).toInstant().toEpochMilli()
 
         return start to end
     }
-
 
     private fun buildUiState(
         todayTotalSales: Double,
@@ -127,12 +102,7 @@ class HomeViewModel(
     ): HomeUiState {
         val recentSales =
             recentSales.map {
-                RecentSale(
-                    saleId = it.saleId,
-                    productName = "",
-                    amount = it.total,
-                    timestamp = it.date
-                )
+                RecentSale(saleId = it.saleId, productName = "", amount = it.total, timestamp = it.date)
             }
         return HomeUiState(
             todayTotalSales = todayTotalSales,

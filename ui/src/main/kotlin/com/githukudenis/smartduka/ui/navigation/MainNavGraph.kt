@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import com.githukudenis.smartduka.ui.screens.splash.SplashScreen
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
@@ -69,8 +70,8 @@ fun MainNavGraph(modifier: Modifier = Modifier, appState: AppState) {
                         fadeOut()
                 }
             ) {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text(text = "Splash")
+                SplashScreen {
+                    appState.navigate(SmartDukaDestination.Home.route, SmartDukaDestination.Splash.route)
                 }
             }
             navigation(

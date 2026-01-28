@@ -156,9 +156,13 @@ class SaleRepositoryImplTest {
 
     @Test
     fun `getSalesBetween maps entities to domain`() = runTest {
-        val entities = listOf(TestDataFactory.saleEntity("1"), TestDataFactory.saleEntity("2"))
+        val entities =
+            listOf(
+                TestDataFactory.saleEntity("1").copy(date = 1L),
+                TestDataFactory.saleEntity("2").copy(date = 2L)
+            )
         val start = 1L
-        val end = 2L
+        val end = 3L
 
         val flow = flowOf(entities)
 
@@ -170,7 +174,7 @@ class SaleRepositoryImplTest {
             assertEquals(2, result.size)
             assertEquals("1", result[0].saleId)
 
-
+            cancelAndIgnoreRemainingEvents()
         }
 
         // ---------------- Insert Sale Items ----------------
@@ -212,8 +216,7 @@ class SaleRepositoryImplTest {
 
         @Test
         fun `getItemsForSale maps entities to domain`() = runTest {
-            val entities =
-                listOf(TestDataFactory.saleItemEntity(), TestDataFactory.saleItemEntity())
+            val entities = listOf(TestDataFactory.saleItemEntity(), TestDataFactory.saleItemEntity())
 
             coEvery { saleLocalDataSource.getItemsForSale("sale-1") } returns entities
 

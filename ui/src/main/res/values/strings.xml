@@ -6,4 +6,6 @@
     <string name="sales">Sales</string>
     <string name="new_sale">New sale</string>
     <string name="settings">Settings</string>
+    <string name="app_slogan">SmartDuka</string>
+    <string name="app_icon">App icon</string>
 </resources>

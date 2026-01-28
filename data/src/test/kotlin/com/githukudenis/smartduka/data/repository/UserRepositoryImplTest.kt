@@ -33,7 +33,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
-import org.mockito.ArgumentMatchers.any
 
 class UserRepositoryImplTest {
     private val userLocalDataSource: UserLocalDataSource = mockk(relaxed = true)
