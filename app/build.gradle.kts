@@ -44,4 +44,6 @@ android {
 dependencies {
     implementation(project(AndroidModules.DesignSystem))
     implementation(project(AndroidModules.Ui))
+    implementation(project(AndroidModules.Database))
+    implementation(project(AndroidModules.Data))
 }

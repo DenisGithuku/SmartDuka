@@ -15,6 +15,10 @@
 */
 package com.githukudenis.smartduka.ui
 
+import com.githukudenis.smartduka.ui.screens.home.HomeViewModel
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
-val uiModule = module {}
+val uiModule = module {
+    viewModel<HomeViewModel> { HomeViewModel(get(), get(), get()) }
+}
