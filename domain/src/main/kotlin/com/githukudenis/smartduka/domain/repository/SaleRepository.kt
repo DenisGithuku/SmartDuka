@@ -33,6 +33,8 @@ interface SaleRepository {
 
     fun observeSaleWithItems(saleId: String): Flow<SaleWithItems>
 
+    fun getSalesBetween(start: Long, end: Long): Flow<List<Sale>>
+
     suspend fun insertSaleItems(items: List<SaleItem>)
 
     suspend fun removeSaleItem(saleId: String, productId: String)
