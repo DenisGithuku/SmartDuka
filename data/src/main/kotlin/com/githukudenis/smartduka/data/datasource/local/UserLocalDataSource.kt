@@ -28,7 +28,7 @@ interface UserLocalDataSource {
 
     suspend fun archiveUser(userId: String)
 
-    suspend fun getUserById(userId: String): UserEntity?
+    suspend fun getUser(): UserEntity
 
     fun observeUserWithShops(userId: String): Flow<UserWithShopsEntity>
 }
@@ -46,8 +46,8 @@ class UserLocalDataSourceImpl(private val userDao: UserDao) : UserLocalDataSourc
         userDao.archive(userId)
     }
 
-    override suspend fun getUserById(userId: String): UserEntity? {
-        return userDao.getById(userId)
+    override suspend fun getUser(): UserEntity {
+        return userDao.getUser()
     }
 
     override fun observeUserWithShops(userId: String): Flow<UserWithShopsEntity> {
