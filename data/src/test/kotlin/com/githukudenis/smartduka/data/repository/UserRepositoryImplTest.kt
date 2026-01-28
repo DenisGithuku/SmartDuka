@@ -86,7 +86,7 @@ class UserRepositoryImplTest {
     fun `getUserById returns domain object`() = runTest {
         val entity = userEntity()
 
-        coEvery { userLocalDataSource.getUserById(entity.userId) } returns entity
+        coEvery { userLocalDataSource.getUser() } returns entity
 
         val result = repository.getUserById(entity.userId)
 
