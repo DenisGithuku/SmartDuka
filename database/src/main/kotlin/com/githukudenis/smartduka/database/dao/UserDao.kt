@@ -36,11 +36,8 @@ interface UserDao {
     @Query("UPDATE users SET archived = 1 WHERE user_id = :userId")
     suspend fun archive(userId: String)
 
-    @Query("SELECT * FROM users WHERE user_id = :userId")
-    suspend fun getById(userId: String): UserEntity?
-
-    @Query("SELECT * FROM users WHERE archived = 0 ORDER BY name ASC")
-    fun observeAll(): Flow<List<UserEntity>>
+    @Query("SELECT * FROM users LIMIT 1")
+    suspend fun getById(): UserEntity?
 
     @Transaction
     @Query("SELECT * FROM users WHERE user_id = :userId")

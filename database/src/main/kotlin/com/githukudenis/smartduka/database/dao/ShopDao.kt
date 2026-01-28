@@ -39,7 +39,7 @@ interface ShopDao {
     suspend fun archive(shopId: String)
 
     @Query("SELECT * FROM shops LIMIT 1")
-    suspend fun getShopDetails(): ShopEntity?
+    fun observeShop(): Flow<ShopEntity>
 
     @Transaction
     @Query("SELECT * FROM shops WHERE shop_id = :shopId")
